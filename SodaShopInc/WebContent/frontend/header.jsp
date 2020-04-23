@@ -1,7 +1,7 @@
 <div align="center">
 	<div>
+			
 			<img src="images/SodaShopLogo.png"/>
-		
 	</div>
 	<div>
 		<input type="text" name="keyword" size="50"/>
