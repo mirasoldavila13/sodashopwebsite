@@ -10,7 +10,7 @@ import com.sodashop.entity.Users;
 
 public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 
-	public UserDAO() {
+	public UserDAO(EntityManager entityManager) {
 		
 	}
 	//create delegates to call its superclass; uses the specific entity type USer
