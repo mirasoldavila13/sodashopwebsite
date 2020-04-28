@@ -13,6 +13,8 @@ import javax.persistence.Query;
 
 
 public class JpaDAO<E> {
+	
+	
 	protected static EntityManager entityManager;
 	// purpose of jpaDAO is providing common operations that are shared among the
 	// subclasses but it does not implement genericDAO
