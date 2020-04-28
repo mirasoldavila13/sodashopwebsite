@@ -8,14 +8,12 @@
 	</div>
 	<div>
 		<b/>
-		<a href="users">Users</a>
-		<a href="category">Categories</a>
-		<a href="soda">Sodas</a>
-		<a href="customer">Customers</a>
-		<a href="review">Reviews</a>
-		<a href="order">Orders</a>
-		<a href="inquiry">Inventory Inquiry</a>
+		<a href="users">Users</a> | 
+		<a href="category">Categories</a> |
+		<a href="soda">Sodas</a> |
+		<a href="customer">Customers</a> |
+		<a href="review">Reviews</a> |
+		<a href="order">Orders</a> 
 		<b/>
-	</div>
-	
+	</div>	
 </div>
