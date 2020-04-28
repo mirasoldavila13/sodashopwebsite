@@ -3,6 +3,7 @@ package com.sodashop.dao;
 import static org.junit.Assert.assertTrue; 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
@@ -70,11 +71,19 @@ public class UserDAOTest {
 	public void testFindUsers() {
 		Integer userId = 1;
 		Users user = userDAO.get(userId);
-		//print out email
-		System.out.println(user.getEmail());
+		
+		if(user != null) {
+			System.out.println(user.getEmail());
+		}
 		assertNotNull(user);
 	}
 	
+	@Test
+	public void testUserNotFound() {
+		Integer userId = 99;
+		Users user = userDAO.get(userId);
+		assertNull(user);
+	}
 	
 	@AfterClass
 	public static void tearDownClass() {
