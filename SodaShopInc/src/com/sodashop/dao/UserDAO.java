@@ -1,6 +1,6 @@
 package com.sodashop.dao;
 
-import java.util.HashMap;
+import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import com.sodashop.entity.Users;
 public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 
 	public UserDAO(EntityManager entityManager) {
-		
+		super(entityManager);
 	}
 	//create delegates to call its superclass; uses the specific entity type USer
 	public Users create(Users user) {
@@ -20,7 +20,7 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 
 	@Override
 	public Users update(Users user) {
-		return null;
+		return super.update(user);
 	}
 
 	@Override
