@@ -85,6 +85,15 @@ public class UserDAOTest {
 		assertNull(user);
 	}
 	
+	@Test
+	public void testDeleteUser() {
+		Integer userId = 7;
+		userDAO.delete(userId);
+		
+		Users user = userDAO.get(userId);
+		
+		assertNull(user);
+	}
 	@AfterClass
 	public static void tearDownClass() {
 		entityManager.close();
