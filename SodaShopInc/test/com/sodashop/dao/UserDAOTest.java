@@ -94,6 +94,12 @@ public class UserDAOTest {
 		
 		assertNull(user);
 	}
+	
+	@Test(expected = EntityNotFoundException.class)
+	public void testDeleteNonUser() {
+		Integer userId = 35;
+		userDAO.delete(userId);
+	}
 	@AfterClass
 	public static void tearDownClass() {
 		entityManager.close();
