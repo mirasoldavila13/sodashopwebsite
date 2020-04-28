@@ -59,6 +59,16 @@ public class JpaDAO<E> {
 		}
 		
 		return entity;
+	}
+	//delete entity 
+	public void delete(Class<E> type, Object id) {
+	//need to wrap it to transaction since its deleting from db
+		entityManager.getTransaction().begin();
+
+		Object reference = entityManager.getReference(type, id);
+		entityManager.remove(reference);
+		entityManager.getTransaction().commit();
+
 		
 	}
 }
