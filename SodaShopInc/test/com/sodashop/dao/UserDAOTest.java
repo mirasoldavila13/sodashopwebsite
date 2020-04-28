@@ -26,16 +26,16 @@ public class UserDAOTest {
 	public static void setUpClass() throws Exception {
 		entityManagerFactory = Persistence.createEntityManagerFactory("SodaShopInc");
 		entityManager = entityManagerFactory.createEntityManager();
-		UserDAO userDAO = new UserDAO(entityManager);
+		userDAO = new UserDAO(entityManager);
 
 	}
 
 	@Test
 	public void testCreateUsers() {
 		Users user1 = new Users();
-		user1.setEmail("john3@gmail.com");
-		user1.setFullName("John Smith 3");
-		user1.setPassword("johnny3");
+		user1.setEmail("mary@gmail.com");
+		user1.setFullName("MAry Something 3");
+		user1.setPassword("johnnysss3");
 		
 		user1 = userDAO.create(user1);
 		
@@ -52,13 +52,13 @@ public class UserDAOTest {
 	@Test
 	public void testUpdateUsers() {
 		Users user = new Users();
-		user.setUserId(1);
-		user.setEmail("nam@codejava.net");
-		user.setFullName("Nam Ha Minh");
-		user.setPassword("mysecret");
+		user.setUserId(5);
+		user.setEmail("Sunny@gmail.com");
+		user.setFullName("Clara RR");
+		user.setPassword("KFF123!hellooksm");
 		
 		user = userDAO.update(user);
-		String expected = "mysecret";
+		String expected = "KFF123!hellooksm";
 		String actual = user.getPassword();
 		
 		assertEquals(expected, actual);
