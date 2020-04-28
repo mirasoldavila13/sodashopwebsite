@@ -14,18 +14,20 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 		super(entityManager);
 	}
 	//create delegates to call its superclass; uses the specific entity type USer
+	
+	//create user
 	public Users create(Users user) {
 	 return super.create(user);
 	}
-
+	//update user
 	@Override
 	public Users update(Users user) {
 		return super.update(user);
 	}
-
+	//get userid from the users class using the superclass find in jpaDAO
 	@Override
 	public Users get(Object userId) {
-		return null;
+		return super.find(Users.class, userId);
 	}
 
 	public Users findByEmail(String email) {
