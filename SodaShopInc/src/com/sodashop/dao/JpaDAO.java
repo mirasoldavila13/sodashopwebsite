@@ -53,8 +53,11 @@ public class JpaDAO<E> {
 	//first parameter is a class type
 	public E find(Class<E> type, Object id) {
 		E entity = entityManager.find(type, id);
-		//refresh the entity
-		entityManager.refresh(entity);
+		if(entity != null) {
+			//refresh the entity
+			entityManager.refresh(entity);
+		}
+		
 		return entity;
 		
 	}
