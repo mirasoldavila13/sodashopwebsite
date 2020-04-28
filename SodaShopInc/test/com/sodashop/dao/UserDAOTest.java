@@ -2,6 +2,7 @@ package com.sodashop.dao;
 
 import static org.junit.Assert.assertTrue; 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -44,7 +45,8 @@ public class UserDAOTest {
 	
 	@Test(expected = PersistenceException.class)
 	public void testCreateUsersFieldsNotSet() {
-		Users user1 = new Users();		
+		Users user1 = new Users();	
+		
 		user1 = userDAO.create(user1);	
 		assertTrue(user1.getUserId() > 0);
 	}
@@ -63,6 +65,17 @@ public class UserDAOTest {
 		
 		assertEquals(expected, actual);
 	}
+	//using find from jpa to get a use
+	@Test
+	public void testFindUsers() {
+		Integer userId = 1;
+		Users user = userDAO.get(userId);
+		//print out email
+		System.out.println(user.getEmail());
+		assertNotNull(user);
+	}
+	
+	
 	@AfterClass
 	public static void tearDownClass() {
 		entityManager.close();
