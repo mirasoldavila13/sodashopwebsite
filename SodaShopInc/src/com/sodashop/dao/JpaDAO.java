@@ -16,10 +16,7 @@ public class JpaDAO<E> {
 	
 	
 	protected static EntityManager entityManager;
-	// purpose of jpaDAO is providing common operations that are shared among the
-	// subclasses but it does not implement genericDAO
-	// dao is subclasses of jpaDAO class
-	
+	//this is the parent class of UserDAO
 	
 
 	public JpaDAO(EntityManager entityManager) {
@@ -53,4 +50,12 @@ public class JpaDAO<E> {
 		return entity;
 	}
 
+	//first parameter is a class type
+	public E find(Class<E> type, Object id) {
+		E entity = entityManager.find(type, id);
+		//refresh the entity
+		entityManager.refresh(entity);
+		return entity;
+		
+	}
 }
