@@ -7,6 +7,7 @@
 <title>Soda Shop Incorporated Administration</title>
 </head>
 <body>
+	<jsp:directive.include file="header.jsp"/>
 	<h1>Administration Dashboard</h1>
 </body>
 </html>
