@@ -104,12 +104,21 @@ public class UserDAOTest {
 	@Test
 	public void testListAll() {
 		List<Users> listUser =  userDAO.listAll();
-		//if you want to see it acutally print 
+		//if you want to see it actually print 
 		for(Users user: listUser) {
 			System.out.println(user.getEmail());
 		}
 		assertTrue(listUser.size() > 0);
 		
+	}
+	
+	@Test
+	public void testCount() {
+		long totalUsers = userDAO.count();
+		/*this test is test to see if I have 10 users in the db  with the total users
+		 * when you do this test please refer to how many rows/users you have
+		 * */
+		assertEquals(10,totalUsers);
 	}
 	@AfterClass
 	public static void tearDownClass() {
