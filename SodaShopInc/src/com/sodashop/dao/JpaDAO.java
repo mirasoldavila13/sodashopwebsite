@@ -77,4 +77,14 @@ public class JpaDAO<E> {
 		Query query = entityManager.createNamedQuery(queryName);
 		 return query.getResultList();
 	}
+
+	//this method returns a single query
+	
+	public long countQuery(String queryName) {
+		Query query = entityManager.createNamedQuery(queryName);
+		return (long) query.getSingleResult();
+
+		
+	}
+	
 }
