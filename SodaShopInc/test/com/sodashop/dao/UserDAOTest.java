@@ -100,6 +100,17 @@ public class UserDAOTest {
 		Integer userId = 35;
 		userDAO.delete(userId);
 	}
+	
+	@Test
+	public void testListAll() {
+		List<Users> listUser =  userDAO.listAll();
+		//if you want to see it acutally print 
+		for(Users user: listUser) {
+			System.out.println(user.getEmail());
+		}
+		assertTrue(listUser.size() > 0);
+		
+	}
 	@AfterClass
 	public static void tearDownClass() {
 		entityManager.close();
