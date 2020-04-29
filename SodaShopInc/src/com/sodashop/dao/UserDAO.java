@@ -38,15 +38,16 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 	public void delete(Object userId) {
 		super.delete(Users.class, userId);
 	}
-
+	//returns a lists
 	@Override
 	public List<Users> listAll() {
 		return super.findWithNamedQuery("Users.findAll");
 	}
-
+	//returns a single list
 	@Override
 	public long count() {
-		return 0;
+		return super.countQuery("Users.countAll");
+		
 	}
 
 }
