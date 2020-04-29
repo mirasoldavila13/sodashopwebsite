@@ -71,4 +71,10 @@ public class JpaDAO<E> {
 
 		
 	}
+	
+	//create method that gets reused to execute a query by subclasses
+	public List<E> findWithNamedQuery(String queryName){
+		Query query = entityManager.createNamedQuery(queryName);
+		 return query.getResultList();
+	}
 }
