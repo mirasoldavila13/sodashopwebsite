@@ -18,7 +18,8 @@ import javax.persistence.Table;
 //first parameter would be e.g. Users.findAll(), second parameter is the query
 //user is the mappign class. user.fullName maps to fullName field of the users class
 @NamedQueries({									//obj oriented syntax
-	@NamedQuery(name = "Users.findAll", query = "SELECT user FROM Users user ORDER BY user.fullName"),
+	@NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u ORDER BY u.fullName"),
+	@NamedQuery(name = "Users.countAll", query = "SELECT Count(*) FROM Users u"),
 })
 public class Users implements java.io.Serializable {
 
