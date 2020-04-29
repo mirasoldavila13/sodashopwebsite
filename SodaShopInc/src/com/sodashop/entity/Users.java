@@ -1,11 +1,13 @@
 package com.sodashop.entity;
 // Generated Apr 27, 2020, 1:10:24 PM by Hibernate Tools 5.2.12.Final
 
-import javax.persistence.Column;
+import javax.persistence.Column; 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -13,6 +15,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users", catalog = "sodashopdb")
+//first parameter would be e.g. Users.findAll(), second parameter is the query
+//user is the mappign class. user.fullName maps to fullName field of the users class
+@NamedQueries({									//obj oriented syntax
+	@NamedQuery(name = "Users.findAll", query = "SELECT user FROM Users user ORDER BY user.fullName"),
+})
 public class Users implements java.io.Serializable {
 
 	private Integer userId;
