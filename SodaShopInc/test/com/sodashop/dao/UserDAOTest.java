@@ -55,13 +55,13 @@ public class UserDAOTest {
 	@Test
 	public void testUpdateUsers() {
 		Users user = new Users();
-		user.setUserId(5);
-		user.setEmail("Sunny@gmail.com");
-		user.setFullName("Clara RR");
-		user.setPassword("KFF123!hellooksm");
+		user.setUserId(6);
+		user.setEmail("fkmfkf@gmail.com");
+		user.setFullName("Hello its me");
+		user.setPassword("rrerw3443444334");
 		
 		user = userDAO.update(user);
-		String expected = "KFF123!hellooksm";
+		String expected = "rrerw3443444334";
 		String actual = user.getPassword();
 		
 		assertEquals(expected, actual);
