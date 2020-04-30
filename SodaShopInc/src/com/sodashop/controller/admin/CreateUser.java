@@ -17,10 +17,10 @@ public class CreateUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 
-		UserServ userServ = new UserServ();
-		userServ.createUser(request,response);
+		UserServ userServ = new UserServ(request,response);
+		userServ.createUser();
 		//after creating the user we want to refresh the page
-		userServ.listUser(request,response, "New User Created Successfully");
+		userServ.listUser("New User Created Successfully");
 		
 		
 	}
