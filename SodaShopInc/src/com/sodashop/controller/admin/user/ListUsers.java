@@ -29,8 +29,8 @@ public class ListUsers extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserServ userServ = new UserServ();
-		userServ.listUser(request, response, null); 
+		UserServ userServ = new UserServ(request,response);
+		userServ.listUser(); 
 	}
 
 }
