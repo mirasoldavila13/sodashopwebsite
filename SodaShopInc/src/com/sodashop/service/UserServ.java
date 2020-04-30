@@ -17,8 +17,12 @@ public class UserServ {
 	private UserDAO userDAO;
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
+	private HttpServletRequest request;
+	private  HttpServletResponse response;
 
-	public UserServ() {
+	public UserServ(HttpServletRequest request, HttpServletResponse response) {
+		this.request = request;
+		this.response = response;
 		// entityManager object
 		entityManagerFactory = Persistence.createEntityManagerFactory("SodaShopInc");
 		entityManager = entityManagerFactory.createEntityManager();
@@ -26,8 +30,17 @@ public class UserServ {
 		userDAO = new UserDAO(entityManager);
 	}
 	
+	
+	
+	public void listUser() throws ServletException, IOException {
+		listUser(null);
+		
+	}
+	
+	
+	
 	//this method needs to refresh a list of users
-	public void listUser(HttpServletRequest request, HttpServletResponse response, String message) throws ServletException, IOException {
+	public void listUser(String message) throws ServletException, IOException {
 		List<Users> listUsers = userDAO.listAll();
 		request.setAttribute("listUsers", listUsers);
 		
@@ -44,7 +57,7 @@ public class UserServ {
 
 	}
 	
-	public void createUser(HttpServletRequest request, HttpServletResponse response){
+	public void createUser() {
 		String email = request.getParameter("email");
 		String fullName = request.getParameter("fullName");
 		String password = request.getParameter("password");
