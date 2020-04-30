@@ -11,6 +11,7 @@
 			<div align="center">
 				<h1>Create New Customer</h1>
 			</div>
+			
 			<div align="center">					
 			<form action="create_user" method="post" onSubmit="return validateFormInput()">
 					<table class="form">
@@ -22,7 +23,7 @@
 						</tr>
 						<tr>
 							<td align="right">Full Name:</td>
-							<td align="left"><input type="text" id="fullName" name="fullNames" size="20"/>
+							<td align="left"><input type="text" id="fullName" name="fullName" size="20"/>
 							</td>
 						</tr>
 					
@@ -69,9 +70,6 @@
 			return true;
 
 		}
-
-
-
 
 	</script>
 </html>

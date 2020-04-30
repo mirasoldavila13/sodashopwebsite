@@ -12,6 +12,12 @@
 				<h1>Users Management</h1>
 				<a href="user_form.jsp">Create New User</a>
 			</div>
+			<c:if test="${message != null}">
+			<div align="center">
+				<h4><i>${message}</i></h4>
+			</div>
+			</c:if>
+			
 			<div align="center">
 				<table border="1">
 					<tr>
