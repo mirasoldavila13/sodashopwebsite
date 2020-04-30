@@ -10,7 +10,7 @@
 			<jsp:directive.include file="header.jsp"/>
 			<div align="center">
 				<h1>Users Management</h1>
-				<a href="">Create New User</a>
+				<a href="user_form.jsp">Create New User</a>
 			</div>
 			<div align="center">
 				<table border="1">
