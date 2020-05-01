@@ -35,7 +35,7 @@ public class UserDAOTest {
 	@Test
 	public void testCreateUsers() {
 		Users user1 = new Users();
-		user1.setEmail("Seren@yahoo.com");
+		user1.setEmail("AAAAAn@yahoo.com");
 		user1.setFullName("Serenity Hutchens");
 		user1.setPassword("pwd!");
 		
@@ -99,6 +99,15 @@ public class UserDAOTest {
 	public void testDeleteNonUser() {
 		Integer userId = 35;
 		userDAO.delete(userId);
+	}
+	
+	@Test
+	public void testFindEmail() {
+		String email = "you@gmail.com";
+		Users user = userDAO.findByEmail(email);
+		
+		assertNotNull(user);
+		
 	}
 	
 	@Test
