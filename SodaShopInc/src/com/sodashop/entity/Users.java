@@ -20,6 +20,7 @@ import javax.persistence.Table;
 @NamedQueries({									//obj oriented syntax
 	@NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u ORDER BY u.fullName"),
 	@NamedQuery(name = "Users.countAll", query = "SELECT Count(*) FROM Users u"),
+	@NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email"), //:email is a parameter in JSTL that's been used before
 })
 public class Users implements java.io.Serializable {
 
