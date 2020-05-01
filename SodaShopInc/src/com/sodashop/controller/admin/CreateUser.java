@@ -19,7 +19,6 @@ public class CreateUser extends HttpServlet {
 
 		UserServ userServ = new UserServ(request,response);
 		userServ.createUser();
-		//after creating the user we want to refresh the page
 		
 		
 		
