@@ -57,14 +57,29 @@ public class UserServ {
 
 	}
 	
-	public void createUser() {
+	public void createUser() throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String fullName = request.getParameter("fullName");
 		String password = request.getParameter("password");
+		//validating to see if there is an existing customer
+		Users existingUser = userDAO.findByEmail(email);
 		
-		Users newUser = new Users(email, fullName, password);
-		userDAO.create(newUser);
+		if(existingUser != null) {
+			String message = "User with " + email + " already exist";
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			Users newUser = new Users(email, fullName, password);
+			userDAO.create(newUser);
+			listUser("New User Created Successfully");
+		}
+		
+	
 		
 		
 	}
+	
+	
 }
