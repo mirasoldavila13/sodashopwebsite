@@ -75,16 +75,21 @@ public class UserServ {
 	public void editUser() throws ServletException, IOException {
 		int userId = Integer.parseInt(request.getParameter("id"));
 		Users user = userDAO.get(userId);
-		
-//		System.out.println(user.getFullName());
-		
-		String editPage = "user_form.jsp";
-		request.setAttribute("user", user);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(editPage);
-		dispatcher.forward(request, response);
-	}
 
+		String editPage = "user_form.jsp";
+		
+		if (user == null) {
+			editPage = "message.jsp";
+			String errorMessage = "Could not find user with ID " + userId;
+			request.setAttribute("message", errorMessage);
+		} else {
+			request.setAttribute("user", user);			
+		}
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response);
+		
+	}
 
 
 	public void updateUser() throws ServletException, IOException {
@@ -110,6 +115,24 @@ public class UserServ {
 			String message = "User has been update successfully";
 			listUser(message);
 		}
+	}
+
+	public void deleteUser() throws ServletException, IOException {
+		int userId = Integer.parseInt(request.getParameter("id"));
+		
+		Users user = userDAO.get(userId);
+		String message = "User has been deleted successfully";
+		
+		if (user == null) {
+			message = "Could not find user with ID " + userId
+					+ ", or it might have been deleted by another admin";
+			
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("message.jsp").forward(request, response);			
+		} else {
+			userDAO.delete(userId);
+			listUser(message);
+		}		
 	}
 	
 	
