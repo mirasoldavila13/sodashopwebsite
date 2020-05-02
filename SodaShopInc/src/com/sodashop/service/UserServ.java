@@ -30,13 +30,10 @@ public class UserServ {
 		userDAO = new UserDAO(entityManager);
 	}
 	
-	
-	
 	public void listUser() throws ServletException, IOException {
 		listUser(null);
 		
 	}
-	
 	
 	
 	//this method needs to refresh a list of users
@@ -53,8 +50,6 @@ public class UserServ {
 	   
 		RequestDispatcher dispatcher = request.getRequestDispatcher(listPage);
 		dispatcher.forward(request, response);
-		
-
 	}
 	
 	public void createUser() throws ServletException, IOException {
@@ -75,11 +70,48 @@ public class UserServ {
 			userDAO.create(newUser);
 			listUser("New User Created Successfully");
 		}
-		
-	
-		
-		
 	}
+
+	public void editUser() throws ServletException, IOException {
+		int userId = Integer.parseInt(request.getParameter("id"));
+		Users user = userDAO.get(userId);
+		
+//		System.out.println(user.getFullName());
+		
+		String editPage = "user_form.jsp";
+		request.setAttribute("user", user);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(editPage);
+		dispatcher.forward(request, response);
+	}
+
+
+
+	public void updateUser() throws ServletException, IOException {
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		String email = request.getParameter("email");
+		String fullName = request.getParameter("fullName");
+		String password = request.getParameter("password");
+		
+//		System.out.println(userId + ": " + email + "," + fullName + "," + password);
+		Users userById = userDAO.get(userId);
+		Users userByEmail = userDAO.get(email);
+		//validate
+		if(userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
+			String message = "Could not update user. User with email " + email + " already exists.";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			Users user = new Users(userId, email, fullName, password);
+			userDAO.update(user);
+			String message = "User has been update successfully";
+			listUser(message);
+		}
+	}
+	
 	
 	
 }
