@@ -1,5 +1,7 @@
 package com.sodashop.dao;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List; 
 
 import javax.persistence.EntityManager;
@@ -39,7 +41,7 @@ public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category
 
 	@Override
 	public long count() {
-		return 0;
+		return super.countQuery("Category.countAll");
 	}
 
 
