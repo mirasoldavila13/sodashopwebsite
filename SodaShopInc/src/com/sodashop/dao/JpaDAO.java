@@ -34,7 +34,7 @@ public class JpaDAO<E> {
 		entityManager.refresh(entity);
 
 		entityManager.getTransaction().commit();
-		//entityManager.close();
+		
 
 		return entity;
 	}
@@ -45,7 +45,7 @@ public class JpaDAO<E> {
 		entity = entityManager.merge(entity);
 		
 		entityManager.getTransaction().commit();
-//		entityManager.close();
+
 		
 		return entity;
 	}
