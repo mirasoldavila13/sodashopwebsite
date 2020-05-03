@@ -53,8 +53,12 @@ public class CategoryDAOTest extends DaoTest {
 	}
 
 	@Test
-	public void testDeleteObject() {
-		fail("Not yet implemented");
+	public void testDeleteCategoryt() {
+		Integer categoryId = 9;
+		categoryDao.delete(categoryId);
+		Category category = categoryDao.get(categoryId);
+		//we use assertNull, it doesn't exist once it gets deleted from sodashopdb
+		assertNull(category);
 	}
 
 	@Test
