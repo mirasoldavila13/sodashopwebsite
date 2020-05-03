@@ -77,7 +77,11 @@ public class CategoryDAOTest extends DaoTest {
 
 	@Test
 	public void testCount() {
-		fail("Not yet implemented");
+		long totalCategories = categoryDao.count();
+		/*this test is test to see if I have 7 soda categories in the db  with the total users
+		 * when you do this test please refer to how many rows/users you have
+		 * */
+		assertEquals(7,totalCategories);
 	}
 
 }
