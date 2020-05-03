@@ -1,6 +1,6 @@
 package com.sodashop.dao;
 
-import static org.junit.Assert.assertTrue; 
+import static org.junit.Assert.assertTrue;  
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -19,15 +19,13 @@ import org.junit.Test;
 
 import com.sodashop.entity.Users;
 
-public class UserDAOTest {
-	private static EntityManagerFactory entityManagerFactory;
-	private static EntityManager entityManager;
+public class UserDAOTest  extends DaoTest {
+	
 	private static UserDAO userDAO;
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		entityManagerFactory = Persistence.createEntityManagerFactory("SodaShopInc");
-		entityManager = entityManagerFactory.createEntityManager();
+		DaoTest.setUpBeforeClass();
 		userDAO = new UserDAO(entityManager);
 
 	}
@@ -130,9 +128,8 @@ public class UserDAOTest {
 		assertEquals(10,totalUsers);
 	}
 	@AfterClass
-	public static void tearDownClass() {
-		entityManager.close();
-		entityManagerFactory.close();
+	public static void tearDownAfterClass() throws Exception {
+		DaoTest.tearDownAfterClass();
 	}
 
 }
