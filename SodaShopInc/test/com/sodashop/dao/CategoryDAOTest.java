@@ -1,7 +1,8 @@
 package com.sodashop.dao;
 
-import static org.junit.Assert.*; 
+import static org.junit.Assert.*;
 
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -63,7 +64,15 @@ public class CategoryDAOTest extends DaoTest {
 
 	@Test
 	public void testListAll() {
-		fail("Not yet implemented");
+		List<Category> listCategory = categoryDao.listAll();
+		//if you want to see it actually print 
+		for(Category category: listCategory) {
+			System.out.println(category.getName());
+		}
+		assertTrue(listCategory.size() > 0);
+		
+		
+		
 	}
 
 	@Test
