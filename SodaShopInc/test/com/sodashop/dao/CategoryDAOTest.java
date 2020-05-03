@@ -36,18 +36,20 @@ public class CategoryDAOTest extends DaoTest {
 	public void testUpdateCategory() {
 		Category category = new Category("Club Soda");
 		category.setCategoryId(7);
-		category.setName("Club Soda");
-		category = categoryDao.update(category);
-		String expected = "Club Soda";
-		String actual = category.getName();
 		
-		assertEquals(expected, actual);
+		Category newCategory = categoryDao.update(category);
+		
+		assertEquals(category.getName(), newCategory.getName());
 	
 	}
 
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		Integer categoryId = 7;
+		Category category = categoryDao.get(categoryId);
+		assertNotNull(category);
+		
+		
 	}
 
 	@Test
