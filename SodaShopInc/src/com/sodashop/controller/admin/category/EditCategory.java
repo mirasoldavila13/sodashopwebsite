@@ -16,7 +16,7 @@ public class EditCategory extends Base {
 	private static final long serialVersionUID = 1L;
  
     public EditCategory() {
-        super();
+       
        
     }
 
