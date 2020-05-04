@@ -73,10 +73,43 @@ public class CategoryServ{
 	public void editCategory() throws ServletException, IOException {
 		int categoryId = Integer.parseInt(request.getParameter("id"));
 		Category category = categoryDao.get(categoryId);
-		request.setAttribute("category", category);
 		String editPage = "category_form.jsp";
+		
+		if(category == null) {
+			editPage = "message.jsp";
+			String errorMessage = "Could not find Category with ID " + categoryId;
+			request.setAttribute("message", errorMessage);
+		}
+		else {
+			request.setAttribute("category", category);
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(editPage);
 		dispatcher.forward(request, response);
+		
+	}
+	
+	public void updateCreate() throws ServletException, IOException {
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		String CategoryName = request.getParameter("name");
+		
+		Category categoryById = categoryDao.get(categoryId);
+		Category categoryByName = categoryDao.findByName(CategoryName);
+		
+		if(categoryByName != null && categoryById.getCategoryId() != categoryByName.getCategoryId()) {
+			String message = "Could not update category. Category with name" + CategoryName + " already exists.";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			categoryById.setName(CategoryName);
+			categoryDao.update(categoryById);
+			String message = "Category has been updated successfully";
+			listCategory(message);
+		}
+
 	}
 }
 
