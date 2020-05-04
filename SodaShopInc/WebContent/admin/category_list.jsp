@@ -46,9 +46,9 @@
 			<script>
 				function confirmDelete(categoryId){
 
-				if(confirm('Are you sure you want to delete user ' + categoryId + '?')){
+				if(confirm('Are you sure you want to delete category ' + categoryId + '?')){
 					//if user presses ok, set the location property of the current window to the url of the servlet
-					window.location = 'delete_user?id=' + categoryId;
+					window.location = 'delete_category?id=' + categoryId;
 					}
 				}
 
