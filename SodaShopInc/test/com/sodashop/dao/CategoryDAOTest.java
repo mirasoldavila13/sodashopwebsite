@@ -83,5 +83,19 @@ public class CategoryDAOTest extends DaoTest {
 		 * */
 		assertEquals(7,totalCategories);
 	}
+	
+	@Test
+	public void testFindCategory() {
+		String name = "Ice Cream Sundae";
+		Category category = categoryDao.findByName(name);
+		assertNotNull(category);	
+	}
+	@Test
+	public void testFindNotCategory() {
+		Integer categoryId = 99;
+		Category category = categoryDao.get(categoryId);
+		
+		assertNull(category);
+	}
 
 }
