@@ -17,8 +17,8 @@
 				<b>
 				<a href="user_form.jsp">New User</a> &nbsp;
 				<a href="create_customer">New Customer</a> &nbsp;
-				<a href="create_category">New Category</a> &nbsp;
-				<a href="create category">New Soda</a> &nbsp;
+				<a href="category_form.jsp"">New Category</a> &nbsp;
+				<a href="create_soda">New Soda</a> &nbsp;
 				<a href="inqury_form">Inventory Inqury Form</a> &nbsp;
 				</b>
 			</div>
