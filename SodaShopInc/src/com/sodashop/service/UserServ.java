@@ -9,23 +9,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.sodashop.controller.admin.Base;
 import com.sodashop.dao.UserDAO;
 import com.sodashop.entity.Users;
 
-public class UserServ {
+public class UserServ  {
+	protected EntityManager entityManager;
 	private UserDAO userDAO;
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
 	private HttpServletRequest request;
 	private  HttpServletResponse response;
 
-	public UserServ(HttpServletRequest request, HttpServletResponse response) {
+	public UserServ(EntityManager entityManager,HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		// entityManager object
-		entityManagerFactory = Persistence.createEntityManagerFactory("SodaShopInc");
-		entityManager = entityManagerFactory.createEntityManager();
+		this.entityManager = entityManager;
 		// this is the instance of UserDAO class
 		userDAO = new UserDAO(entityManager);
 	}
