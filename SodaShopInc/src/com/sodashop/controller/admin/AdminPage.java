@@ -16,7 +16,7 @@ public class AdminPage extends HttpServlet {
        
  
     public AdminPage() {
-        super();
+        
        
     }
 

@@ -15,10 +15,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "order_detail", catalog = "sodashopdb")
-@NamedQueries({
-	@NamedQuery(name = "OrderDetail.bestSelling", query = "SELECT od.soda FROM OrderDetail od GROUP by od.soda.sodaId " + "ORDER BY SUM(od.quantity) DESC"),
-	@NamedQuery(name = "OrderDetail.countBySoda", query = "SELECT COUNT(*) FROM OrderDetail od WHERE od.soda.sodaId =:sodaId")	
-})
+//@NamedQueries({
+//	@NamedQuery(name = "OrderDetail.bestSelling", query = "SELECT o.soda FROM OrderDetail o GROUP by o.soda.sodaId " + "ORDER BY SUM(o.quantity) DESC"),
+//	@NamedQuery(name = "OrderDetail.countBySoda", query = "SELECT COUNT(*) FROM OrderDetail o WHERE od.soda.sodaId =:sodaId")	
+//})
 public class OrderDetail implements java.io.Serializable {
 
 	private OrderDetailId id;

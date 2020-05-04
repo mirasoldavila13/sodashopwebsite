@@ -1,5 +1,5 @@
 package com.sodashop.service;
-import java.util.List;
+import java.util.List; 
 import java.io.IOException; 
 import javax.persistence.EntityManager; 
 import javax.persistence.EntityManagerFactory;
@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sodashop.controller.admin.Base;
+import com.sodashop.controller.Base;
 import com.sodashop.dao.UserDAO;
 import com.sodashop.entity.Category;
 import com.sodashop.entity.Users;

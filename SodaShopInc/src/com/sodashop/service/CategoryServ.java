@@ -1,6 +1,6 @@
 package com.sodashop.service;
 
-import java.util.List;
+import java.util.List; 
 import java.io.IOException;
 
 import javax.persistence.EntityManager;
@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sodashop.controller.admin.Base;
+import com.sodashop.controller.Base;
 import com.sodashop.dao.CategoryDAO;
 import com.sodashop.dao.UserDAO;
 import com.sodashop.entity.Category;
@@ -118,7 +118,7 @@ public class CategoryServ{
 		String message;
 		
 		if(category == null) {
-			message = "Category with ID " + categoryId + " doesn't exist";
+			message = "Category with ID " + categoryId + " doesn't exist, or has been deleted by admin";
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("message.jsp").forward(request, response);	
 		}

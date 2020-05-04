@@ -1,13 +1,14 @@
 package com.sodashop.controller.admin.user;
 
-import java.io.IOException;
+import java.io.IOException; 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sodashop.controller.admin.Base;
+import com.sodashop.controller.Base;
+
 import com.sodashop.service.UserServ;
 
 
@@ -17,7 +18,7 @@ public class DeleteUser extends Base  {
        
    
     public DeleteUser() {
-        super();
+       
        
     }
 
