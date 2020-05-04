@@ -14,10 +14,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order_detail", catalog = "sodashopdb")
+@Table(name = "order_detail", catalog = "bookstoredb")
 @NamedQueries({
-	@NamedQuery(name = "OrderDetail.bestSelling", query = "SELECT od.soda FROM OrderDetail od GROUP by od.soda.sodaId " + "ORDER BY SUM(od.quantity) DESC"),
-	@NamedQuery(name = "OrderDetail.countBySoda", query = "SELECT COUNT(*) FROM OrderDetail od WHERE od.soda.sodaId =:sodaId")	
+	
 })
 public class OrderDetail implements java.io.Serializable {
 

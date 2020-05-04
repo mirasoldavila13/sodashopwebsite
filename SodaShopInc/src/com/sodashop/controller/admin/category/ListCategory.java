@@ -24,6 +24,7 @@ public class ListCategory extends Base {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			response.getWriter().println("Edit Category");
 			CategoryServ categoryServ = new CategoryServ(entityManager,request, response);
 			categoryServ.listCategory();
 		

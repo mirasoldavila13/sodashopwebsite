@@ -22,5 +22,4 @@ public abstract class Base extends HttpServlet {
 		entityManager.close();
 		entityManagerFactory.close();
 	}
-	
 }

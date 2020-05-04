@@ -1,5 +1,4 @@
 package com.sodashop.entity;
-// Generated Apr 27, 2020, 1:10:24 PM by Hibernate Tools 5.2.12.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "category", catalog = "sodashopdb")
 @NamedQueries({
 	@NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c ORDER BY c.name"),
-	@NamedQuery(name = "Category.countAll", query = "SELECT Count(*) FROM Category c"),
+	@NamedQuery(name = "Category.countAll", query = "SELECT COUNT(c) FROM Category c"),
 	@NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name")
 	
 })

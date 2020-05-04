@@ -7,9 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sodashop.controller.admin.Base;
+import com.sodashop.service.CategoryServ;
+import com.sodashop.service.UserServ;
+
 
 @WebServlet("/admin/edit_category")
-public class EditCategory extends HttpServlet {
+public class EditCategory extends Base {
 	private static final long serialVersionUID = 1L;
  
     public EditCategory() {
@@ -19,8 +23,9 @@ public class EditCategory extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CategoryServ categoryServ = new CategoryServ(entityManager,request, response);
+		categoryServ.editCategory();
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 }
