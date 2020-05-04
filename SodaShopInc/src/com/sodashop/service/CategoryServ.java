@@ -114,11 +114,20 @@ public class CategoryServ{
 
 	public void deleteCategory() throws ServletException, IOException {
 		int categoryId = Integer.parseInt(request.getParameter("id"));
-		categoryDao.delete(categoryId);
-		String message = "The Category " + categoryId + " has been deleted successfully";
+		Category category = categoryDao.get(categoryId);
+		String message;
 		
-		listCategory(message);
-	
+		if(category == null) {
+			message = "Category with ID " + categoryId + " doesn't exist";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("message.jsp").forward(request, response);	
+		}
+		else {
+			categoryDao.delete(categoryId);
+			message = "The Category " + categoryId + " has been deleted successfully";
+			listCategory(message);
+		}
+		
 	}
 }
 
