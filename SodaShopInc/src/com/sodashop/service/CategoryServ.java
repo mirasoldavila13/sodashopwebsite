@@ -40,6 +40,27 @@ public class CategoryServ{
 		   
 		RequestDispatcher dispatcher = request.getRequestDispatcher(categoryPage);
 		dispatcher.forward(request, response);
+			
 		
 	}
+	
+	public void createCategory() throws ServletException, IOException {
+		String name = request.getParameter("name");
+		Category existCategory = categoryDao.findByName(name);
+		
+		if(existCategory != null) {
+			String message = "Category with name " + name + " already exist";
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			Category newCategory = new Category(name);
+			categoryDao.create(newCategory);
+			listCategory();
+			
+		}
+	}
 }
+
+
