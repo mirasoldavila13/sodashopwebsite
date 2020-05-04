@@ -90,7 +90,7 @@ public class UserServ  {
 
 
 	public void updateUser() throws ServletException, IOException {
-		int userId = Integer.parseInt(request.getParameter("userId"));
+		int userId = Integer.parseInt(request.getParameter("userId"));		
 		String email = request.getParameter("email");
 		String fullName = request.getParameter("fullName");
 		String password = request.getParameter("password");
@@ -109,7 +109,8 @@ public class UserServ  {
 		else {
 			Users user = new Users(userId, email, fullName, password);
 			userDAO.update(user);
-			String message = "User has been update successfully";
+
+			String message = "User has been updated successfully";
 			listUser(message);
 		}
 	}
