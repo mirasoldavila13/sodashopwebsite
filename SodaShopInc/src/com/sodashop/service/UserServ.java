@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sodashop.controller.admin.Base;
 import com.sodashop.dao.UserDAO;
+import com.sodashop.entity.Category;
 import com.sodashop.entity.Users;
 
 public class UserServ  {
@@ -97,7 +98,9 @@ public class UserServ  {
 		
 //		System.out.println(userId + ": " + email + "," + fullName + "," + password);
 		Users userById = userDAO.get(userId);
-		Users userByEmail = userDAO.get(email);
+//		Users userByEmail = userDAO.get(email);
+		Users userByEmail = userDAO.findByEmail(email);
+
 		//validate
 		if(userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
 			String message = "Could not update user. User with email " + email + " already exists.";
