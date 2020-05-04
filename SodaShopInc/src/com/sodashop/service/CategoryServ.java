@@ -33,9 +33,16 @@ public class CategoryServ{
 	}
 	
 	public void listCategory() throws ServletException, IOException {
+		listCategory(null);
+		
+	}
+	public void listCategory(String message) throws ServletException, IOException {
 		List<Category> listCategories = categoryDao.listAll();
 		request.setAttribute("listCategories", listCategories);
 		
+		if(message != null) {
+			request.setAttribute("message", message);
+		}
 		String categoryPage = "category_list.jsp";
 		   
 		RequestDispatcher dispatcher = request.getRequestDispatcher(categoryPage);
@@ -57,7 +64,8 @@ public class CategoryServ{
 		else {
 			Category newCategory = new Category(name);
 			categoryDao.create(newCategory);
-			listCategory();
+			String message = "New Category Was Created Succesfully";
+			listCategory(message);
 			
 		}
 	}
