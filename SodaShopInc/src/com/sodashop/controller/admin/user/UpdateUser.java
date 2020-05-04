@@ -7,11 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sodashop.controller.admin.Base;
 import com.sodashop.service.UserServ;
 
 @WebServlet("/admin/update_user")
-public class UpdateUser extends Base {
+public class UpdateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
     public UpdateUser() {
@@ -20,7 +19,7 @@ public class UpdateUser extends Base {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserServ userServ = new UserServ(entityManager,request, response);
+		UserServ userServ = new UserServ(request, response);
 		userServ.updateUser();
 	}
 
