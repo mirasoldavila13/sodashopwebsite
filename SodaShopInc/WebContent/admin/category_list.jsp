@@ -5,16 +5,17 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>Manage Categories</title>
+			<link rel="stylesheet" href="../css/style.css">
 		</head>
 		<body>
 			<jsp:directive.include file="header.jsp"/>
 			<div align="center">
-				<h1>Category Management</h1>
+				<h2 class="pageheading">Category Management</h2>
 				<a href="category_form.jsp">Create New Category</a>
 			</div>
 			<c:if test="${message != null}">
 			<div align="center">
-				<h4><i>${message}</i></h4>
+				<h4 class="message">${message}</h4>
 			</div>
 			</c:if>
 			
@@ -46,9 +47,9 @@
 			<script>
 				function confirmDelete(categoryId){
 
-				if(confirm('Are you sure you want to delete user ' + categoryId + '?')){
+				if(confirm('Are you sure you want to delete category ' + categoryId + '?')){
 					//if user presses ok, set the location property of the current window to the url of the servlet
-					window.location = 'delete_user?id=' + categoryId;
+					window.location = 'delete_category?id=' + categoryId;
 					}
 				}
 

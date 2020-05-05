@@ -14,10 +14,18 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+<<<<<<< HEAD
 @Table(name = "order_detail", catalog = "bookstoredb")
 @NamedQueries({
 	
 })
+=======
+@Table(name = "order_detail", catalog = "sodashopdb")
+//@NamedQueries({
+//	@NamedQuery(name = "OrderDetail.bestSelling", query = "SELECT o.soda FROM OrderDetail o GROUP by o.soda.sodaId " + "ORDER BY SUM(o.quantity) DESC"),
+//	@NamedQuery(name = "OrderDetail.countBySoda", query = "SELECT COUNT(*) FROM OrderDetail o WHERE od.soda.sodaId =:sodaId")	
+//})
+>>>>>>> adminLogin
 public class OrderDetail implements java.io.Serializable {
 
 	private OrderDetailId id;
