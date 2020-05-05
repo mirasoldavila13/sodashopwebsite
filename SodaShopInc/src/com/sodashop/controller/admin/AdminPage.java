@@ -12,6 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin/")
 public class AdminPage extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(req, resp);
+	}
+
+
 	private static final long serialVersionUID = 1L;
        
  
