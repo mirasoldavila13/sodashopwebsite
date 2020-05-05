@@ -6,6 +6,8 @@
 			<meta charset="UTF-8">
 			<title>Manage Categories</title>
 			<link rel="stylesheet" href="../css/style.css">
+			<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+			<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 		</head>
 		<body>
 			<jsp:directive.include file="header.jsp"/>
