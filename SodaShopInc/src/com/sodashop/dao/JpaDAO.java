@@ -16,10 +16,7 @@ public class JpaDAO<E> {
 	
 	
 	protected static EntityManager entityManager;
-	// purpose of jpaDAO is providing common operations that are shared among the
-	// subclasses but it does not implement genericDAO
-	// dao is subclasses of jpaDAO class
-	
+	//this is the parent class of UserDAO
 	
 
 	public JpaDAO(EntityManager entityManager) {
@@ -37,7 +34,7 @@ public class JpaDAO<E> {
 		entityManager.refresh(entity);
 
 		entityManager.getTransaction().commit();
-		entityManager.close();
+		
 
 		return entity;
 	}
@@ -48,9 +45,54 @@ public class JpaDAO<E> {
 		entity = entityManager.merge(entity);
 		
 		entityManager.getTransaction().commit();
-		entityManager.close();
+
 		
 		return entity;
 	}
 
+	//first parameter is a class type
+	public E find(Class<E> type, Object id) {
+		E entity = entityManager.find(type, id);
+		if(entity != null) {
+			//refresh the entity
+			entityManager.refresh(entity);
+		}
+		
+		return entity;
+	}
+	//delete entity 
+	public void delete(Class<E> type, Object id) {
+	//need to wrap it to transaction since its deleting from db
+		entityManager.getTransaction().begin();
+
+		Object reference = entityManager.getReference(type, id);
+		entityManager.remove(reference);
+		entityManager.getTransaction().commit();
+
+		
+	}
+	
+	//create method that gets reused to execute a query by subclasses
+	public List<E> findWithNamedQuery(String queryName){
+		Query query = entityManager.createNamedQuery(queryName);
+		 return query.getResultList();
+	}
+	
+	public List<E> findWithNamedQuery(String queryName, String parameterName, Object value){
+		Query query = entityManager.createNamedQuery(queryName);
+		query.setParameter(parameterName, value);
+		
+		return query.getResultList();
+		
+	}
+
+	//this method returns a single query
+	
+	public long countQuery(String queryName) {
+		Query query = entityManager.createNamedQuery(queryName);
+		return (long) query.getSingleResult();
+		
+	}
+	
+	
 }

@@ -5,10 +5,13 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>Register as a Customer</title>
+<<<<<<< HEAD
 			<link rel="stylesheet" href="css/style.css"/> 
 			<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 			<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
+=======
+>>>>>>> adminLogin
 			</head>
 		<body>
 			<jsp:directive.include file="header.jsp"/>
@@ -75,5 +78,9 @@
 			</div>
 			
 			<jsp:directive.include file="footer.jsp"/>
+<<<<<<< HEAD
 		</body>			
+=======
+		</body>	
+>>>>>>> adminLogin
 </html>

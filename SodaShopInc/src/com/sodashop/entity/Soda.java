@@ -1,7 +1,7 @@
 package com.sodashop.entity;
 // Generated Apr 27, 2020, 1:10:24 PM by Hibernate Tools 5.2.12.Final
 
-import java.math.BigDecimal;
+import java.math.BigDecimal ;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,6 +23,16 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "soda", catalog = "sodashopdb")
+//@NamedQueries({
+//	@NamedQuery(name = "Soda.findAll", query = "SELECT s FROM Soda s"),
+//	@NamedQuery(name = "Soda.findByName", query = "SELECT s FROM Soda S WHERE s.name = :name"),
+//	@NamedQuery(name = "Soda.countAll", query = "SELECT COUNT(*) FROM Soda s"),
+//	@NamedQuery(name = "Soda.countByCategory", query = "SELECT COUNT(s) FROM Soda s " + "WHERE s.category.categoryId = :catId"),
+//	@NamedQuery(name = "Soda.findByCategory", query = "SELECT s FROM Soda s JOIN " + "Category c ON b.category.categoryId = c.categoryId AND c.categoryId = :catId"),
+//	@NamedQuery(name = "Soda.listNew", query = "SELECT s FROM Soda s ORDER BY s.LastUpDate DESC"),
+//	@NamedQuery(name = "Soda.search", query = "SELECT s FROM Soda s WHERE s.name LIKE '%' || :keyword || '%'"
+//		+ " OR b.manufactor LIKE '%' || :keyword || '%'" + " OR b.description LIKE '%' || :keyword || '%'")
+//})
 public class Soda implements java.io.Serializable {
 
 	private Integer sodaId;

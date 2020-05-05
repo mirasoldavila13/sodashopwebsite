@@ -5,6 +5,10 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>Soda Shop Incorporated</title>
+<<<<<<< HEAD
+=======
+			
+>>>>>>> adminLogin
 		</head>
 		<body>
 			<jsp:directive.include file="header.jsp"/>

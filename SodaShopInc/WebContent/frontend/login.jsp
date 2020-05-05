@@ -1,17 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+=======
+>>>>>>> adminLogin
 <!DOCTYPE html>
 	<html>
 		<head>
 			<meta charset="UTF-8">
+<<<<<<< HEAD
 			<title>Customer Login</title>
+=======
+			<title>Customer Login</title>	
+>>>>>>> adminLogin
 		</head>
 		<body>
 			<jsp:directive.include file="header.jsp"/>
 		
 			<div align="center">
+<<<<<<< HEAD
 				<h2>Customer Login</h2>				
+=======
+				<h2>Customer Login</h2>
+>>>>>>> adminLogin
 				<form id="LoginForm" action="login" method="post">
 					<table>
 						<tr>

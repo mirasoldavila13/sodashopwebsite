@@ -10,6 +10,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +21,13 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "review", catalog = "sodashopdb")
+@NamedQueries({
+	@NamedQuery(name = "Review.listAll", query = "SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
+	@NamedQuery(name = "Review.countAll", query = "SELECT COUNT(r) FROM Review r"),
+	@NamedQuery(name = "Review.findByCustomerAndSoda",  query = "SELECT r FROM Review r WHERE r.customer.customerId =:customerId" + " AND r.soda.sodaId =:sodaId"),
+	@NamedQuery(name = "Review.mostFavoredSodas", query = "SELECT r.soda, COUNT(r.soda.sodaId) AS ReviewCount, AVG(r.rating) as AvgRating FROM Review r " + "GROUP BY r.soda.sodaId HAVING AVG(r.rating) >= 4.0 " + "ORDER BY ReviewCount DESC, AvgRating DESC"),
+	@NamedQuery(name = "Review.countByCustomer", query = "SELECT COUNT(r.reviewId) FROM Review r WHERE r.customer.customerId =:customerId")
+})
 public class Review implements java.io.Serializable {
 
 	private Integer reviewId;
