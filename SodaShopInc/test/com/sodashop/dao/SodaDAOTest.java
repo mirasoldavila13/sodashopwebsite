@@ -10,6 +10,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -68,7 +71,7 @@ public class SodaDAOTest extends DaoTest{
 		category.setCategoryId(4);
 		newSoda.setCategory(category);
 		
-		newSoda.setName("Cali Poopy");
+		newSoda.setName("New");
 		newSoda.setDescription("Crisp refreshing citrus drink");
 		
 		String imagePath = "/Users/mirasoldavila/Desktop/sodaitem.png";
@@ -89,7 +92,40 @@ public class SodaDAOTest extends DaoTest{
 		assertTrue(createSoda.getSodaId() > 0);
 	
 	}
+	
+	@Test
+	public void testDeleteSuccess() {
+		Integer sodaId = 23;
+		sodaDAO.delete(sodaId);
+	}
 
+
+	@Test
+	public void testListAll() {
+		List<Soda> listSoda = sodaDAO.listAll();
+		
+		for(Soda s: listSoda) {
+			System.out.println(s.getName() + "- " + s.getManufactor());
+		}
+		assertFalse(listSoda.isEmpty());
+	}
+	
+	@Test
+	public void testFindByName() {
+		String name = "Cap'n Grapeful";
+		Soda soda = sodaDAO.findByName(name);
+		
+		assertNotNull(soda);
+	}
+	
+	@Test
+	public void testGetSodaSuccess() {
+		Integer sodaId = 2;
+		Soda soda = sodaDAO.get(sodaId);
+		assertNotNull(soda);
+	}
+	
+	
 
 	
 	@AfterClass
