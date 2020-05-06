@@ -26,8 +26,8 @@ public class SodaDAO extends JpaDAO<Soda> implements GenericDAO<Soda> {
 	}
 
 	@Override
-	public Soda get(Object id) {
-		return null;
+	public Soda get(Object sodaId) {
+		return super.find(Soda.class, sodaId);
 	}
 
 	@Override
@@ -37,12 +37,23 @@ public class SodaDAO extends JpaDAO<Soda> implements GenericDAO<Soda> {
 
 	@Override
 	public List<Soda> listAll() {
-		return null;
+		
+		return super.findWithNamedQuery("Soda.findAll");
 	}
 
+	public Soda findByName(String name) {
+		List<Soda>	result = super.findWithNamedQuery("Soda.findByName", "name", name);
+		
+		if(!result.isEmpty()) {
+			return result.get(0);
+		}
+		
+		return null;
+	}
+	
 	@Override
 	public long count() {
-		return 0;
+		return super.countQuery("Soda.countAll");
 	}
 
 	
