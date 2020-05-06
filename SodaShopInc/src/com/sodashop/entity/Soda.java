@@ -13,6 +13,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,6 +26,11 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "soda", catalog = "sodashopdb", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@NamedQueries({
+	@NamedQuery(name = "Soda.findAll", query = "SELECT s from Soda s"),
+	@NamedQuery(name = "Soda.findByName", query = "SELECT s from Soda s where s.name = :name"),
+	@NamedQuery(name = "Soda.countAll", query = "SELECT COUNT(*) from Soda s ")
+})
 public class Soda implements java.io.Serializable {
 
 	private Integer sodaId;
