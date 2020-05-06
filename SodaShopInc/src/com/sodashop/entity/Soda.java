@@ -47,7 +47,7 @@ public class Soda implements java.io.Serializable {
 	private BigDecimal quantityInStock;
 	private BigDecimal amountHeld;
 	private String stockUnits;
-	private String manufactor;
+	private String manufacture;
 	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
 	private Set<Review> reviews = new HashSet<Review>(0);
 
@@ -63,12 +63,12 @@ public class Soda implements java.io.Serializable {
 		this.price = price;
 		this.publishDate = publishDate;
 		this.lastUpdateTime = lastUpdateTime;
-		this.manufactor = manufactor;
+		this.manufacture = manufactor;
 	}
 
 	public Soda(Category category, String name, String description, byte[] image, float price, Date publishDate,
 			Date lastUpdateTime, BigDecimal quantityInStock, BigDecimal amountHeld, String stockUnits,
-			String manufactor, Set<OrderDetail> orderDetails, Set<Review> reviews) {
+			String manufacture, Set<OrderDetail> orderDetails, Set<Review> reviews) {
 		this.category = category;
 		this.name = name;
 		this.description = description;
@@ -79,7 +79,7 @@ public class Soda implements java.io.Serializable {
 		this.quantityInStock = quantityInStock;
 		this.amountHeld = amountHeld;
 		this.stockUnits = stockUnits;
-		this.manufactor = manufactor;
+		this.manufacture = manufacture;
 		this.orderDetails = orderDetails;
 		this.reviews = reviews;
 	}
@@ -189,13 +189,13 @@ public class Soda implements java.io.Serializable {
 		this.stockUnits = stockUnits;
 	}
 
-	@Column(name = "manufactor", nullable = false, length = 64)
-	public String getManufactor() {
-		return this.manufactor;
+	@Column(name = "manufacture", nullable = false, length = 64)
+	public String getManufacture() {
+		return this.manufacture;
 	}
 
-	public void setManufactor(String manufactor) {
-		this.manufactor = manufactor;
+	public void setManufacture(String manufacture) {
+		this.manufacture = manufacture;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "soda")
