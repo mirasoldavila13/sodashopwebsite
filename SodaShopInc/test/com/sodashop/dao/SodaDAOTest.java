@@ -55,7 +55,7 @@ public class SodaDAOTest extends DaoTest{
 		Date publishDate = dateFormat.parse("04/01/2020");
 		existSoda.setPublishDate(publishDate);
 		
-		existSoda.setManufactor("Spacies");
+		existSoda.setManufacture("Spacies");
 		Soda updateSoda = sodaDAO.update(existSoda);
 		
 //		assertEquals(existSoda.getCategory().getCategoryId(), updateSoda.getCategory().getCategoryId());
@@ -87,7 +87,7 @@ public class SodaDAOTest extends DaoTest{
 		Date publishDate = dateFormat.parse("04/01/2020");
 		newSoda.setPublishDate(publishDate);
 		
-		newSoda.setManufactor("Spacies");
+		newSoda.setManufacture("Spacies");
 		Soda createSoda = sodaDAO.create(newSoda);
 	
 		
@@ -107,7 +107,7 @@ public class SodaDAOTest extends DaoTest{
 		List<Soda> listSoda = sodaDAO.listAll();
 		
 		for(Soda s: listSoda) {
-			System.out.println(s.getName() + "- " + s.getManufactor());
+			System.out.println(s.getName() + "- " + s.getManufacture());
 		}
 		assertFalse(listSoda.isEmpty());
 	}
