@@ -5,6 +5,7 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>Soda Shop Incorporated</title>
+			
 		</head>
 		<body>
 			<jsp:directive.include file="header.jsp"/>

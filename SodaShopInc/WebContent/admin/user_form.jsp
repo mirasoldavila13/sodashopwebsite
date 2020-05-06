@@ -6,11 +6,12 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<head>
 		<meta charset="UTF-8">
 		<title>Create New Customer</title>
+		<link rel="stylesheet" href="../css/style.css">
 		</head>
 	<body>
 	<jsp:directive.include file="header.jsp" />
 	<div align="center">
-		<h2>
+		<h2 class="pageheading">
 			<c:if test="${user != null}">Edit User</c:if>
 			<c:if test="${user == null}">Create New User</c:if>
 		</h2>
@@ -46,9 +47,10 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 			</tr>
 
 			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="Save" /> <input type="button" value="Cancel"
-					onclick="javascript:history.go(-1);" /></td>
+				<td colspan="2" align="center">
+					<button type="submit">Save</button>
+					<button onclick="javascript:history.go(-1);">Cancel </button>
+				</td>
 			</tr>
 		</table>
 		</form>
