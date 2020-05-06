@@ -85,6 +85,18 @@ public class JpaDAO<E> {
 		return query.getResultList();
 		
 	}
+	
+//	public List<E> findWithNamedQuery(String queryName, Map<String, Object> parameters){
+//		Query query = entityManager.createNamedQuery(queryName);
+//		Set<Entry<String, Object>> p = parameters.entrySet();
+//		for(Entry<String, Object> entry: p) {
+//			query.p(entry.getKey(), entry.getValue());
+//		}
+//		
+//		List<E> results = query.getResultList();
+//		return results;
+//		
+//	}
 
 	//this method returns a single query
 	
@@ -92,6 +104,12 @@ public class JpaDAO<E> {
 		Query query = entityManager.createNamedQuery(queryName);
 		return (long) query.getSingleResult();
 		
+	}
+
+	public long countQuery(String queryName, String parameterName, Object parameters) {
+		Query query = entityManager.createNamedQuery(queryName);
+		query.setParameter(parameterName, parameters);
+		return (long) query.getMaxResults();
 	}
 	
 	
