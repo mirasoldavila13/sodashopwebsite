@@ -43,4 +43,38 @@ public class SodaServ {
 		dispatcher.forward(request, response);
 	}
 
+
+
+
+	public void createSoda() {
+		String name = request.getParameter("name");
+		
+		Soda existSoda = sodaDAO.findByName(name);
+		
+		if (existSoda!= null) {
+			String message = "Could not create new soda because the name '"
+					+ name + "' already exists.";
+			listSoda(message);
+			return;
+		}
+		
+		Soda newSoda = new Soda();
+		//readSodaFields(newSoda);
+		
+		Soda createdSoda = sodaDAO.create(newSoda);
+		
+		if (createdSoda.getSodaId() > 0) {
+			String message = "A new soda has been created successfully.";
+			listSoda(message);
+		}
+	}
+
+
+
+
+	private void listSoda(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
