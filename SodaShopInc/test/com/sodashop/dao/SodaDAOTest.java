@@ -119,6 +119,12 @@ public class SodaDAOTest extends DaoTest{
 	}
 	
 	@Test
+	public void testCount() {
+		long totalSodas = sodaDAO.count();
+		assertEquals(17, totalSodas);
+	}
+	
+	@Test
 	public void testGetSodaSuccess() {
 		Integer sodaId = 2;
 		Soda soda = sodaDAO.get(sodaId);
