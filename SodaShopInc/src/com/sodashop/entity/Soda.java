@@ -2,6 +2,7 @@ package com.sodashop.entity;
 // Generated May 5, 2020, 5:38:19 PM by Hibernate Tools 5.2.12.Final
 
 import java.math.BigDecimal;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -38,6 +40,7 @@ public class Soda implements java.io.Serializable {
 	private String name;
 	private String description;
 	private byte[] image;
+	private String base64Image;
 	private float price;
 	private Date publishDate;
 	private Date lastUpdateTime;
@@ -212,5 +215,13 @@ public class Soda implements java.io.Serializable {
 	public void setReviews(Set<Review> reviews) {
 		this.reviews = reviews;
 	}
-
+	@Transient
+	public String getBase64Image() {
+		this.base64Image = Base64.getEncoder().encodeToString(this.image);
+		return this.base64Image;
+	}
+	@Transient
+	public void setBased64Image(String base64Image) {
+		this.base64Image = base64Image;
+	}
 }
