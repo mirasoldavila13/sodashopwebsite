@@ -11,14 +11,14 @@ import com.sodashop.controller.Base;
 import com.sodashop.service.SodaServ;
 
 
-@WebServlet("/admin/create_book")
-public class CreateSoda extends Base {
+@WebServlet("/admin/new_soda")
+public class NewSoda extends Base {
 	private static final long serialVersionUID = 1L;
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SodaServ sodaServ = new SodaServ(entityManager,request, response);
-		sodaServ.createSoda();
+		sodaServ.showSodaNewForm();
 	}
 
 }
