@@ -1,5 +1,5 @@
 package com.sodashop.entity;
-// Generated Apr 27, 2020, 1:10:24 PM by Hibernate Tools 5.2.12.Final
+// Generated May 5, 2020, 5:38:19 PM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import javax.persistence.Column;
