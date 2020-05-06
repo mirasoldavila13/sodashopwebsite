@@ -13,7 +13,7 @@
 			<jsp:directive.include file="header.jsp"/>
 			<div align="center">
 				<h2 class="pageheading">Soda Management</h2>
-				<a href="soda_form.jsp">Create New Soda</a>
+				<a href="new_soda">Create New Soda</a>
 			</div>
 			<c:if test="${message != null}">
 			<div align="center">
