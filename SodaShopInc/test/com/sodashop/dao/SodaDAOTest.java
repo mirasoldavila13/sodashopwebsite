@@ -67,6 +67,8 @@ public class SodaDAOTest extends DaoTest{
 	@Test
 	public void testCreateSoda() throws ParseException, IOException {
 		Soda newSoda = new Soda();
+		
+		
 		Category category = new Category("Fruity");
 		category.setCategoryId(4);
 		newSoda.setCategory(category);
