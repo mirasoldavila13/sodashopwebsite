@@ -20,7 +20,7 @@
 			</a> 
 		</div>
 		<div>
-			<a href="soda">
+			<a href="list_sodas">
 				<img src="../images/soda.png"/>	<br/> Sodas
 			</a> 
 		</div>
