@@ -7,18 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class CreateSoda
- */
+import com.sodashop.controller.Base;
+import com.sodashop.service.SodaServ;
+
+
 @WebServlet("/admin/create_book")
-public class CreateSoda extends HttpServlet {
+public class CreateSoda extends Base {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		SodaServ sodaServ = new SodaServ(entityManager,request, response);
+		sodaServ.createSoda();
 	}
 
 }
