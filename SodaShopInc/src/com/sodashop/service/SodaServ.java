@@ -121,8 +121,8 @@ public class SodaServ {
 		soda.setPublishDate(publishDate);
 		
 		Integer categoryId = Integer.parseInt(request.getParameter("category"));
-		//Category category = CategoryDA
-		//soda.setCategory(category);
+		Category category = categoryDAO.get(publishDate);
+		soda.setCategory(category);
 		
 		soda.setPrice(price);
 		
