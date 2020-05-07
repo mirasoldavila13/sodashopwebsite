@@ -31,7 +31,7 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 		<c:if test="${soda != null}">
 			<form action="update_soda" method="post" id="sodaForm" enctype="multipart/form-data">			<form action="update_soda" method="post" onSubmit="return validateFormInput()">
 
-				<input type="hidden" name="sodaId" value=${soda.sodaId}>
+				<input type="hidden" name="sodaId" value="${soda.sodaId}">
 		</c:if>
 
 		<c:if test="${soda == null}">
