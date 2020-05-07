@@ -136,6 +136,24 @@ public class UserServ  {
 		}		
 	}
 	
+	public void login() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		boolean login = userDAO.checkLogin(email, password);
+		
+		if(login) {
+			request.getSession().setAttribute("userEmail", email);
+			//after use is athenticated we shou the admin homepage
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/");
+			dispatcher.forward(request, response);
+		}
+		else {
+			String message = "Login Failed";
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
+	}
 	
 	
 }

@@ -1,13 +1,11 @@
 package com.sodashop.entity;
-// Generated Apr 27, 2020, 1:10:24 PM by Hibernate Tools 5.2.12.Final
+// Generated May 7, 2020, 1:56:56 AM by Hibernate Tools 5.2.12.Final
 
-import javax.persistence.Column; 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -15,13 +13,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users", catalog = "sodashopdb")
-//first parameter would be e.g. Users.findAll(), second parameter is the query
-//user is the mapping class. user.fullName maps to fullName field of the users class
-@NamedQueries({									//object oriented syntax
-	@NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u ORDER BY u.fullName"),
-	@NamedQuery(name = "Users.countAll", query = "SELECT Count(u) FROM Users u"),
-	@NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email"), //:email is a parameter in JSTL that's been used before
-})
 public class Users implements java.io.Serializable {
 
 	private Integer userId;
@@ -31,19 +22,17 @@ public class Users implements java.io.Serializable {
 
 	public Users() {
 	}
-	
+
+	public Users(String email, String password, String fullName) {
+		this.email = email;
+		this.password = password;
+		this.fullName = fullName;
+	}
 	
 	public Users(Integer userId, String email, String fullName, String password) {
 		this(email, fullName, password);
 		this.userId = userId;
 	}
-	public Users(String email,String fullName,String password) {
-		this.email = email;
-		this.fullName = fullName;
-		this.password = password;
-	}
-
-	
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

@@ -1,12 +1,15 @@
 package com.sodashop.entity;
+// Generated May 7, 2020, 1:56:56 AM by Hibernate Tools 5.2.12.Final
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -14,22 +17,22 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "category", catalog = "sodashopdb")
-@NamedQueries({
-	@NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c ORDER BY c.name"),
-	@NamedQuery(name = "Category.countAll", query = "SELECT COUNT(c) FROM Category c"),
-	@NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name")
-	
-})
 public class Category implements java.io.Serializable {
 
 	private Integer categoryId;
 	private String name;
+	private Set<Soda> sodas = new HashSet<Soda>(0);
 
 	public Category() {
 	}
 
 	public Category(String name) {
 		this.name = name;
+	}
+
+	public Category(String name, Set<Soda> sodas) {
+		this.name = name;
+		this.sodas = sodas;
 	}
 
 	@Id
@@ -51,6 +54,15 @@ public class Category implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+	public Set<Soda> getSodas() {
+		return this.sodas;
+	}
+
+	public void setSodas(Set<Soda> sodas) {
+		this.sodas = sodas;
 	}
 
 }

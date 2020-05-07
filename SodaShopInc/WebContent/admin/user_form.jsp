@@ -6,7 +6,9 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<head>
 		<meta charset="UTF-8">
 		<title>Create New Customer</title>
-		<link rel="stylesheet" href="../css/style.css">
+			<link rel="stylesheet" href="../css/style.css">
+			<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+			<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 		</head>
 	<body>
 	<jsp:directive.include file="header.jsp" />
@@ -19,12 +21,12 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 
 	<div align="center">
 		<c:if test="${user != null}">
-			<form action="update_user" method="post" onSubmit="return validateFormInput()">
+			<form action="update_user" method="post" id="userForm">
 				<input type="hidden" name="userId" value=${user.userId}>
 		</c:if>
 
 		<c:if test="${user == null}">
-			<form action="create_user" method="post" onSubmit="return validateFormInput()">
+			<form action="create_user" method="post" id="userForm">
 		</c:if>
 		<table class="form">
 			<tr>
@@ -58,6 +60,8 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<jsp:directive.include file="footer.jsp" />
 </body>
 <script type="text/javascript">
+		
+
 		function validateFormInput(){
 			var emailField = document.getElementById("email");	//this a reference to email
 			var nameField = document.getElementById("fullName");
@@ -81,6 +85,6 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 			return true;
 
 		}
-
+ 
 	</script>
 </html>
