@@ -4,6 +4,8 @@ package com.sodashop.entity;
 import java.util.Date; 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,28 +23,17 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "soda_order", catalog = "sodashopdb")
-<<<<<<< HEAD
 
 @NamedQueries({
 	@NamedQuery(name = "SodaOrder.findAll", query = "SELECT so FROM SodaOrder so ORDER BY so.orderDate DESC"),
-	@NamedQuery(name = "SodaOrder.countAll", query = "SELECT COUNT(so) FROM SodaOrder so"),
-	@NamedQuery(name = "SodaOrder.findByCustomer",  query = "SELECT so FROM SodaOrder so WHERE so.customer.customerId =:customerId ORDER BY so.orderDate DESC"),
-	@NamedQuery(name = "SodaOrder.findByIdAndCustomer",
-			query = "SELECT so FROM SodaOrder so WHERE so.orderId =:orderId AND so.customer.customerId =:customerId"),
-	@NamedQuery(name = "SodaOrder.countByCustomer",
-			query = "SELECT COUNT(so.orderId) FROM SodaOrder so WHERE so.customer.customerId =:customerId")
+//	@NamedQuery(name = "SodaOrder.countAll", query = "SELECT COUNT(so) FROM SodaOrder so"),
+//	@NamedQuery(name = "SodaOrder.findByCustomer",  
+//			query = "SELECT so FROM SodaOrder so WHERE so.customer.customerId =:customerId ORDER BY so.orderDate DESC"),
+//	@NamedQuery(name = "SodaOrder.findByIdAndCustomer",
+//			query = "SELECT so FROM SodaOrder so WHERE so.orderId =:orderId AND so.customer.customerId =:customerId"),
+//	@NamedQuery(name = "SodaOrder.countByCustomer",
+//			query = "SELECT COUNT(so.orderId) FROM SodaOrder so WHERE so.customer.customerId =:customerId")
 })
-=======
-//@NamedQueries({
-//	@NamedQuery(name = "SodaOrder.findAll", query = "SELECT so FROM SodaOrder so ORDER BY so.orderDate DESC"),
-//	@NamedQuery(name = "SodaOrder.countAll", query = "SELECT COUNT(*) FROM SodaOrder"),
-//	@NamedQuery(name = "SodaOrder.findByCustomer",  query = "SELECT so FROM SoOrder so WHERE so.customer.customerId =:customerId ORDER BY so.orderDate DESC"),
-//	@NamedQuery(name = "SodaOrder.findByIdAndCustomer", query = "SELECT so FROM SodaOrder so WHERE so.orderId =:orderId AND so.customer.customerId =:customerId"),
-//	@NamedQuery(name = "Soda.findByCategory", query = "SELECT s FROM Soda s JOIN " + "Category c ON b.category.categoryId = c.categoryId AND c.categoryId = :catId"),
-//	@NamedQuery(name = "SodaOrder.countByCustomer", query = "SELECT COUNT(so.orderId) FROM SodaOrder so WHERE so.customer.customerId =:customerId")
-//	
-//})
->>>>>>> adminLogin
 
 public class SodaOrder implements java.io.Serializable {
 
@@ -171,7 +162,7 @@ public class SodaOrder implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sodaOrder")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sodaOrder", cascade=CascadeType.ALL)
 	public Set<OrderDetail> getOrderDetails() {
 		return this.orderDetails;
 	}

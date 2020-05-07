@@ -7,14 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
-import com.sodashop.controller.admin.Base;
-import com.sodashop.service.CategoryServ;
-import com.sodashop.service.UserServ;
-=======
 import com.sodashop.controller.Base;
 import com.sodashop.service.CategoryServ;
->>>>>>> adminLogin
+import com.sodashop.service.UserServ;
+
+
 
 
 @WebServlet("/admin/edit_category")
@@ -28,15 +25,10 @@ public class EditCategory extends Base {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
+
 		CategoryServ categoryServ = new CategoryServ(entityManager,request, response);
 		categoryServ.editCategory();
-		
-=======
-			CategoryServ categoryServ = new CategoryServ(entityManager,request, response);
-			categoryServ.editCategory();
 
->>>>>>> adminLogin
 	}
 
 }

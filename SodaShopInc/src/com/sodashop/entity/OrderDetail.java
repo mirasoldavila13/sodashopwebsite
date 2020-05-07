@@ -3,6 +3,7 @@ package com.sodashop.entity;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -14,24 +15,22 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-<<<<<<< HEAD
-@Table(name = "order_detail", catalog = "bookstoredb")
-@NamedQueries({
-	
-})
-=======
 @Table(name = "order_detail", catalog = "sodashopdb")
-//@NamedQueries({
-//	@NamedQuery(name = "OrderDetail.bestSelling", query = "SELECT o.soda FROM OrderDetail o GROUP by o.soda.sodaId " + "ORDER BY SUM(o.quantity) DESC"),
-//	@NamedQuery(name = "OrderDetail.countBySoda", query = "SELECT COUNT(*) FROM OrderDetail o WHERE od.soda.sodaId =:sodaId")	
-//})
->>>>>>> adminLogin
+@NamedQueries({
+//	@NamedQuery(name = "OrderDetail.findAll", query = "SELECT c FROM OrderDetail c"),
+//	@NamedQuery(name = "OrderDetail.countBySoda", query = "SELECT COUNT(*) FROM OrderDetail od WHERE od.sodaOrder.sodaId =:sodaId")
+})
 public class OrderDetail implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private OrderDetailId id;
 	private SodaOrder sodaOrder;
-
+	
 	public OrderDetail() {
+		
 	}
 
 	public OrderDetail(OrderDetailId id) {
@@ -44,7 +43,6 @@ public class OrderDetail implements java.io.Serializable {
 	}
 
 	@EmbeddedId
-
 	@AttributeOverrides({ @AttributeOverride(name = "orderId", column = @Column(name = "order_id")),
 			@AttributeOverride(name = "dateOrdered", column = @Column(name = "date_ordered", nullable = false, length = 10)),
 			@AttributeOverride(name = "quantity", column = @Column(name = "quantity")),
@@ -58,7 +56,7 @@ public class OrderDetail implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "order_id", insertable = false, updatable = false)
 	public SodaOrder getSodaOrder() {
 		return this.sodaOrder;
