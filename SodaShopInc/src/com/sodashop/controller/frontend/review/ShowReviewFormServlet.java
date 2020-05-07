@@ -9,25 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/review")
-public class CustomerReview extends HttpServlet {
+@WebServlet("/reviewform")
+public class ShowReviewFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CustomerReview() {
+   
+    public ShowReviewFormServlet() {
         super();
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String review ="frontend/review_form.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(review);
-		dispatcher.forward(request, response);
-	}
-
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String registerForm = "frontend/review_form.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(registerForm);
+		dispatcher.forward(request, response);
+	
 	}
 
 }
