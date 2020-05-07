@@ -7,8 +7,13 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 		<meta charset="UTF-8">
 		<title>Create New Soda</title>
 		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../css/jquery-ui.min.css">
+		<link rel="stylesheet" href="../css/richtext.min.css">	
 		<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 		<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+		
+		<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.richtext.min.js"></script>
 	</head>
 	
 	<body>
@@ -24,19 +29,30 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 
 	<div align="center">
 		<c:if test="${soda != null}">
-			<form action="update_soda" method="post" onSubmit="return validateFormInput()">
+			<form action="update_soda" method="post" id="sodaForm" enctype="multipart/form-data">			<form action="update_soda" method="post" onSubmit="return validateFormInput()">
+
 				<input type="hidden" name="sodaId" value=${soda.sodaId}>
 		</c:if>
 
 		<c:if test="${soda == null}">
-			<form action="create_soda" method="post" onSubmit="return validateFormInput()">
+			<form action="create_soda" method="post" id="sodaForm" enctype="multipart/form-data">
 		</c:if>
 		<table class="form">
-			
-			<tr>
-				<td align="right">Category:</td>
-				<td align="left">
-					<input type="text" id="category" name="category" size="20" value="${soda.category.name}"/>
+			<tr>	
+				<td>Category:</td>
+				<td>
+					<select name="category">
+						<c:forEach items="${listCategory}" var="category">
+							<c:if test="${category.categoryId eq soda.category.categoryId}">
+								<option value="${category.categoryId}" selected>
+							</c:if>
+							<c:if test="${category.categoryId ne soda.category.categoryId}">
+								<option value="${category.categoryId}">
+							</c:if>							
+								${category.name}
+							</option>
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>
@@ -52,15 +68,10 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 				</td>
 			</tr>
 			<tr>
-				<td align="right">Publish Date:</td>
-				<td> 
-					<input type="text" id="publishDate" name="publishDate" size="20" value="${soda.publishDate}"/>
-				</td>
-			</tr>
-			<tr>
 				<td align="right">Image:</td>
 				<td> 
-					<input type="text" id="bookImage" name="bookImage" size="20" value="${soda.base64Image}"/>
+					<input type="file" id="sodaImage" name="sodaImage" size="20"/> </br>
+					<img  id="thumbnail" alt="Image Preview" src="data:image/jpg;base64,${soda.base64Image}"/>
 				</td>
 			</tr>
 			
@@ -70,8 +81,8 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 			</tr>
 			<tr>
 				<td align="right">Description:</td>
-				<td align="left">
-					<textarea rows="5" cols="50" name="description" id="description">${soda.description}</textarea>
+				<td >
+					<textarea rows="5" cols="50" name="description" id="description" >${soda.description}</textarea>
 				</td>
 			</tr>
 			
@@ -81,26 +92,72 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 			</tr>
 
 			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="Save" /> <input type="button" value="Cancel"
-					onclick="javascript:history.go(-1);" /></td>
+				<td colspan="2" align="center">
+					<input type="submit" value="Save" />
+					 <input type="button" value="Cancel" onclick="javascript:history.go(-1);" />
+				</td>
 			</tr>
 		</table>
 		</form>
 	</div>
 	<jsp:directive.include file="footer.jsp" />
 </body>
-<script type="text/javascript">
-		function validateFormInput(){
-			var nameField = document.getElementById("name");	//this a reference to name
-			
-			if(nameField.value.length == 0){
-				alert("Soda is required");
-				nameField.focus();
-				return false;
-			}
-			return true;
-		}
+<<script type="text/javascript">
 
-	</script>
+	$(document).ready(function() {
+	
+		
+		$('#sodaImage').change(function() {
+			showImageThumbnail(this);
+		});
+		
+		
+		$("#sodaForm").validate({
+			rules: {
+				category: "required",
+				name: "required",
+				manufacture: "required",
+		
+				<c:if test="${soda == null}">
+					sodaImage: "required",
+				</c:if>
+				
+				price: "required",
+				description: "required",
+				quantity: "required",
+				amountheld: "required",
+				Stock Units: "required",
+			},
+			
+			messages: {
+				category: "Please select a category for the soda",
+				name: "Please enter name of the soda",
+				manufacture: "Please enter manufacture of the soda",
+				sodaImage: "Please choose an image of the soda",
+				price: "Please enter price of the soda",
+				description: "Please enter description of the soda",
+				quantity: "Please enter the quantitiy of the soda",
+				amountheld: "Please enter the total amount of soda",
+				units: "Please enter the stock units of soda",
+				
+			},
+		});
+		
+		$("#buttonCancel").click(function() {
+			history.go(-1);
+		});
+	});
+	
+	function showImageThumbnail(fileInput) {
+		var file = fileInput.files[0];
+		
+		var reader = new FileReader();
+		
+		reader.onload = function(e) {
+			$('#thumbnail').attr('src', e.target.result);
+		};
+		
+		reader.readAsDataURL(file);
+	}
+</script>
 </html>

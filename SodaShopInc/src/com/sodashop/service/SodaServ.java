@@ -138,6 +138,28 @@ public class SodaServ {
 
 
 
+	public void editSoda() throws ServletException, IOException {
+		Integer sodaId = Integer.parseInt(request.getParameter("id"));
+		Soda soda = sodaDAO.get(sodaId);
+		
+	
+			List<Category> listCategory = categoryDAO.listAll();
+			
+			request.setAttribute("soda", soda);
+			String editPage = "soda_form.jsp";
+
+			request.setAttribute("listCategory", listCategory);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(editPage);
+			dispatcher.forward(request, response);
+			
+		
+		
+	}
+
+
+
+
 	
 
 }
