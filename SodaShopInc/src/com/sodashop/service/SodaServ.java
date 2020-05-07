@@ -188,6 +188,27 @@ public class SodaServ {
 
 
 
+	public void deleteSoda() throws ServletException, IOException {
+		Integer sodaId = Integer.parseInt(request.getParameter("id"));
+		Soda soda = sodaDAO.get(sodaId);
+
+		if(soda == null) {
+			String message = "Could not find soda with ID " + sodaId + ", or it might have been deleted by another admin";
+			
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("message.jsp").forward(request, response);	
+		}
+		else {
+			String message = "The Soda has been deleted successfully";
+			sodaDAO.delete(sodaId);
+			listSoda(message);
+		}
+
+	}
+
+
+
+
 	
 
 }
