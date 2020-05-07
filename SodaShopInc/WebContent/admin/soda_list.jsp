@@ -4,7 +4,7 @@
 	<html>
 		<head>
 			<meta charset="UTF-8">
-			<title>Manage Categories</title>
+			<title>Manage Soda</title>
 			<link rel="stylesheet" href="../css/style.css">
 			<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 			<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
@@ -12,8 +12,8 @@
 		<body>
 			<jsp:directive.include file="header.jsp"/>
 			<div align="center">
-				<h2 class="pageheading">Category Management</h2>
-				<a href="category_form.jsp">Create New Category</a>
+				<h2 class="pageheading">Soda Management</h2>
+				<a href="new_soda">Create New Soda</a>
 			</div>
 			<c:if test="${message != null}">
 			<div align="center">
@@ -27,18 +27,30 @@
 						<th>Index</th>
 						<th>ID</th>
 						<th>Name</th>
-						<th>Actions</th>
+						<th>Manufacture</th>
+						<th>Image</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Last Updated</th>
+						<th>Action</th>
 					</tr>
 					<br />
-					<c:forEach var="category" items="${listCategories}" varStatus="status">
+					<c:forEach var="soda" items="${listSoda}" varStatus="status">
 					<tr>
 						<td>${status.index + 1}</td>
-						<td>${category.categoryId}</td>
-						<td>${category.name}</td>
-						
+						<td>${soda.sodaId}</td>
+						<td>${soda.name}</td>
+						<td>${soda.manufacture}</td>
+						<td>
+						<img src="data:image/jpg;base64,${soda.base64Image}" width="84" height="110" />
+						</td>
+						<td>${soda.category.name}</td>
+						<td>${soda.price}</td>
+						<td>${soda.lastUpdateTime}</td>
+					
 						<td> 
-							<a href="edit_category?id=${category.categoryId}">Edit</a> &nbsp;
-							<a href="javascript:confirmDelete(${category.categoryId})">Delete</a>
+							<a href="edit_soda?id=${soda.sodaId}">Edit</a> &nbsp;
+							<a href="javascript:confirmDelete(${soda.sodaId})">Delete</a>
 						 </td>
 					</tr>
 					</c:forEach>
@@ -47,11 +59,11 @@
 			<jsp:directive.include file="footer.jsp"/>
 			
 			<script>
-				function confirmDelete(categoryId){
+				function confirmDelete(sodaId){
 
-				if(confirm('Are you sure you want to delete category ' + categoryId + '?')){
+				if(confirm('Are you sure you want to delete soda ' + sodaId + '?')){
 					//if user presses ok, set the location property of the current window to the url of the servlet
-					window.location = 'delete_category?id=' + categoryId;
+					window.location = 'delete_soda?id=' + sodaId;
 					}
 				}
 

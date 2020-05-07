@@ -1,10 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div align="center">
 	<div>
 			<img src="../images/SodaShopLogo.png"/>
 	</div>
 	<div>
-		Welcome, Admin | <a href="logout">Logout</a>
+		Welcome, <c:out value="${sessionScope.userEmail}"/> | <a href="logout">Logout</a>
 		<br /><br />
 	</div>
 	<div id="headmenu">
@@ -19,7 +20,7 @@
 			</a> 
 		</div>
 		<div>
-			<a href="soda">
+			<a href="list_sodas">
 				<img src="../images/soda.png"/>	<br/> Sodas
 			</a> 
 		</div>

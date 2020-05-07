@@ -1,5 +1,5 @@
 package com.sodashop.entity;
-// Generated Apr 27, 2020, 1:10:24 PM by Hibernate Tools 5.2.12.Final
+// Generated May 5, 2020, 5:38:19 PM by Hibernate Tools 5.2.12.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -14,12 +14,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "order_detail", catalog = "sodashopdb")
-@NamedQueries({
-//	@NamedQuery(name = "OrderDetail.findAll", query = "SELECT c FROM OrderDetail c"),
-//	@NamedQuery(name = "OrderDetail.countBySoda", query = "SELECT COUNT(*) FROM OrderDetail od WHERE od.sodaOrder.sodaId =:sodaId")
-})
+//@NamedQueries({
+//@NamedQuery(name = "OrderDetail.bestSelling", query = "SELECT o.soda FROM OrderDetail o GROUP by o.soda.sodaId " + "ORDER BY Sum(o.quantity) DESC"),
+//@NamedQuery(name = "OrderDetail.countBySoda", query = "SELECT Count(*) FROM OrderDetail o WHERE od.soda.sodaId =:sodaId")	
+//})
+
 public class OrderDetail implements java.io.Serializable {
 
 	/**
@@ -27,6 +29,7 @@ public class OrderDetail implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private OrderDetailId id;
+	private Soda soda;
 	private SodaOrder sodaOrder;
 	
 	public OrderDetail() {
@@ -37,17 +40,17 @@ public class OrderDetail implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public OrderDetail(OrderDetailId id, SodaOrder sodaOrder) {
+	public OrderDetail(OrderDetailId id, Soda soda, SodaOrder sodaOrder) {
 		this.id = id;
+		this.soda = soda;
 		this.sodaOrder = sodaOrder;
 	}
 
 	@EmbeddedId
 	@AttributeOverrides({ @AttributeOverride(name = "orderId", column = @Column(name = "order_id")),
-			@AttributeOverride(name = "dateOrdered", column = @Column(name = "date_ordered", nullable = false, length = 10)),
-			@AttributeOverride(name = "quantity", column = @Column(name = "quantity")),
-			@AttributeOverride(name = "subtotal", column = @Column(name = "subtotal", precision = 12, scale = 0)),
-			@AttributeOverride(name = "sodaId", column = @Column(name = "soda_id")) })
+			@AttributeOverride(name = "sodaId", column = @Column(name = "soda_id")),
+			@AttributeOverride(name = "quantity", column = @Column(name = "quantity", nullable = false)),
+			@AttributeOverride(name = "subtotal", column = @Column(name = "subtotal", nullable = false, precision = 12, scale = 0)) })
 	public OrderDetailId getId() {
 		return this.id;
 	}
@@ -56,11 +59,19 @@ public class OrderDetail implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name = "order_id", insertable = false, updatable = false)
-	public SodaOrder getSodaOrder() {
-		return this.sodaOrder;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "soda_id", insertable = false, updatable = false)
+	public Soda getSoda() {
+		return this.soda;
 	}
+
+	public void setSoda(Soda soda) {
+		this.soda = soda;
+	}
+
+	
+
 
 	public void setSodaOrder(SodaOrder sodaOrder) {
 		this.sodaOrder = sodaOrder;

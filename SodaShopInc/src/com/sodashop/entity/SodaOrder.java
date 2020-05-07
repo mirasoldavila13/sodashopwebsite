@@ -1,5 +1,5 @@
 package com.sodashop.entity;
-// Generated Apr 27, 2020, 1:10:24 PM by Hibernate Tools 5.2.12.Final
+// Generated May 5, 2020, 5:38:19 PM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date; 
 import java.util.HashSet;
@@ -14,16 +14,14 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.persistence.NamedQueries;
 @Entity
 @Table(name = "soda_order", catalog = "sodashopdb")
-
 @NamedQueries({
 	@NamedQuery(name = "SodaOrder.findAll", query = "SELECT so FROM SodaOrder so ORDER BY so.orderDate DESC"),
 //	@NamedQuery(name = "SodaOrder.countAll", query = "SELECT COUNT(so) FROM SodaOrder so"),

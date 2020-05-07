@@ -29,6 +29,8 @@ public class UserDAOTest  extends DaoTest {
 		userDAO = new UserDAO(entityManager);
 
 	}
+	
+	
 
 	@Test
 	public void testCreateUsers() {
@@ -99,6 +101,15 @@ public class UserDAOTest  extends DaoTest {
 		userDAO.delete(userId);
 	}
 	
+	
+	@Test
+	public void testCheckLoginPass() {
+		String email = "mirasoldavila13@aim.com";
+		String password = "hello";
+		boolean actual = userDAO.checkLogin(email, password);
+		assertTrue(actual);
+
+	}
 	@Test
 	public void testFindEmail() {
 		String email = "you@gmail.com";
@@ -127,6 +138,13 @@ public class UserDAOTest  extends DaoTest {
 		 * */
 		assertEquals(10,totalUsers);
 	}
+	
+	
+
+	
+	
+	
+	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		DaoTest.tearDownAfterClass();
