@@ -31,7 +31,8 @@ import javax.persistence.UniqueConstraint;
 @NamedQueries({
 	@NamedQuery(name = "Soda.findAll", query = "SELECT s from Soda s"),
 	@NamedQuery(name = "Soda.findByName", query = "SELECT s from Soda s where s.name = :name"),
-	@NamedQuery(name = "Soda.countAll", query = "SELECT COUNT(*) from Soda s ")
+	@NamedQuery(name = "Soda.countAll", query = "SELECT COUNT(*) from Soda s "),
+	@NamedQuery(name = "Soda.findByCategory", query = "SELECT s FROM Soda s JOIN " + "Category c ON s.category.categoryId = c.categoryId AND c.categoryId = :catId"),
 })
 public class Soda implements java.io.Serializable {
 

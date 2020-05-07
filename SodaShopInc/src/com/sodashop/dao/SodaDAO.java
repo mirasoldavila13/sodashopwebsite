@@ -50,6 +50,9 @@ public class SodaDAO extends JpaDAO<Soda> implements GenericDAO<Soda> {
 		
 		return null;
 	}
+	public List<Soda> listByCategory(int categoryId) {
+		return super.findWithNamedQuery("Soda.findByCategory", "catId", categoryId);
+	}
 	
 	@Override
 	public long count() {
