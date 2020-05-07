@@ -142,17 +142,23 @@ public class SodaServ {
 		Integer sodaId = Integer.parseInt(request.getParameter("id"));
 		Soda soda = sodaDAO.get(sodaId);
 		
-	
+		String editPage = "soda_form.jsp";
+			if(soda != null) {
 			List<Category> listCategory = categoryDAO.listAll();
 			
 			request.setAttribute("soda", soda);
-			String editPage = "soda_form.jsp";
 
 			request.setAttribute("listCategory", listCategory);
-			
+			}
+			else {
+				editPage="message.jsp";
+				String message = "Could not find soda with ID: " + sodaId;
+				request.setAttribute("message", message);
+			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher(editPage);
 			dispatcher.forward(request, response);
-		
+			
+			
 	}
 
 
