@@ -2,6 +2,7 @@ package com.sodashop.controller.admin.user.soda;
 
 import java.io.IOException; 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,11 @@ import com.sodashop.controller.Base;
 import com.sodashop.service.SodaServ;
 
 @WebServlet("/admin/edit_soda")
+@MultipartConfig(
+		fileSizeThreshold = 1024 * 10,	// 10 KB
+		maxFileSize = 1024 * 300,		// 300 KB
+		maxRequestSize = 1024 * 1024	// 1 MB 
+)
 public class EditSoda extends Base {
 	private static final long serialVersionUID = 1L;
   
