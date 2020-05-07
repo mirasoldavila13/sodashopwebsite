@@ -209,6 +209,27 @@ public class SodaServ {
 
 
 
+	public void listSodaByCategory() throws ServletException, IOException {
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		
+		List<Soda> listSoda = sodaDAO.listByCategory(categoryId);
+		Category category = categoryDAO.get(categoryId);
+		List<Category> listCategory = categoryDAO.listAll();
+		
+		request.setAttribute("listCategory", listCategory);
+		request.setAttribute("listSoda", listSoda);
+		request.setAttribute("category", category);
+		
+		String listPage = "frontend/soda_list_by_category.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(listPage);
+		dispatcher.forward(request, response);
+
+		
+	}
+
+
+
+
 	
 
 }

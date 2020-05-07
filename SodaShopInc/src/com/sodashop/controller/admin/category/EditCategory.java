@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sodashop.controller.Base;
 import com.sodashop.service.CategoryServ;
+import com.sodashop.service.UserServ;
+
+
 
 
 @WebServlet("/admin/edit_category")
@@ -22,8 +25,9 @@ public class EditCategory extends Base {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			CategoryServ categoryServ = new CategoryServ(entityManager,request, response);
-			categoryServ.editCategory();
+
+		CategoryServ categoryServ = new CategoryServ(entityManager,request, response);
+		categoryServ.editCategory();
 
 	}
 
