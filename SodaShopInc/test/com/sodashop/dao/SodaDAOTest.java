@@ -121,6 +121,16 @@ public class SodaDAOTest extends DaoTest{
 	}
 	
 	@Test
+	public void testListByCategory() {
+		int categoryId = 4;
+		
+		List<Soda> listSoda = sodaDAO.listByCategory(categoryId);
+		for(Soda s: listSoda) {
+			System.out.println(s.getName() + " " + s.getCategory().getCategoryId());
+		}
+		assertTrue(listSoda.size() > 0);
+	}
+	@Test
 	public void testCount() {
 		long totalSodas = sodaDAO.count();
 		assertEquals(17, totalSodas);
