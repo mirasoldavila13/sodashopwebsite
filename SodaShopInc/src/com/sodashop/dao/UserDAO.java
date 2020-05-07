@@ -55,5 +55,20 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 		return super.countQuery("Users.countAll");
 		
 	}
+	
+	public boolean checkLogin(String email, String password) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("email", email);
+		parameters.put("password", password);
+		
+		List<Users> listUsers = super.findWithNamedQuery("Users.checkLogin", parameters);
+		
+		if (listUsers.size() == 1) {
+			return true;
+		}
+		
+		return false;
+	
+	}
 
 }

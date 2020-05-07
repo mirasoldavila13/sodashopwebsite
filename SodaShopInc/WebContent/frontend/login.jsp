@@ -22,8 +22,12 @@
 				<h2>Customer Login</h2>				
 =======
 				<h2>Customer Login</h2>
+<<<<<<< HEAD
 >>>>>>> adminLogin
 				<form id="LoginForm" action="login" method="post">
+=======
+				<form id="LoginForm" action="" method="post">
+>>>>>>> adminLogin
 					<table>
 						<tr>
 							<td>Email:</td>
