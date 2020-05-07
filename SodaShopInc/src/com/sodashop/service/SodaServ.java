@@ -162,8 +162,14 @@ public class SodaServ {
 		Integer sodaId = Integer.parseInt(request.getParameter("sodaId"));
 		
 		Soda existSoda = sodaDAO.get(sodaId);
-	
+		String name = request.getParameter("name");
+		Soda sodaByName = sodaDAO.findByName(name);
 		
+		if (sodaByName != null && !existSoda.equals(sodaByName)) {
+			String message = "Could not update soda because there's another soda having same name.";
+			listSoda(message);
+			return;
+		}
 		readSodaFields(existSoda);
 		
 		sodaDAO.update(existSoda);
