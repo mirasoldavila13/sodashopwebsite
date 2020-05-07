@@ -31,9 +31,6 @@
 						<th>Image</th>
 						<th>Category</th>
 						<th>Price</th>
-						<th>Quantity in Stock</th>
-						<th>Amount Held</th>
-						<th>Stock Units</th>
 						<th>Last Updated</th>
 						<th>Action</th>
 					</tr>
@@ -49,11 +46,8 @@
 						</td>
 						<td>${soda.category.name}</td>
 						<td>${soda.price}</td>
-						<td>${soda.quantityInStock}</td>
-						<td>${soda.amountHeld}</td>
-						<td>${soda.stockUnits}</td>
 						<td>${soda.lastUpdateTime}</td>
-						
+					
 						<td> 
 							<a href="edit_soda?id=${soda.sodaId}">Edit</a> &nbsp;
 							<a href="javascript:confirmDelete(${soda.sodaId})">Delete</a>
