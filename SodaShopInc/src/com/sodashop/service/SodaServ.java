@@ -152,8 +152,24 @@ public class SodaServ {
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(editPage);
 			dispatcher.forward(request, response);
-			
 		
+	}
+
+
+
+
+	public void updateSoda() throws ServletException, IOException {
+		Integer sodaId = Integer.parseInt(request.getParameter("sodaId"));
+		
+		Soda existSoda = sodaDAO.get(sodaId);
+	
+		
+		readSodaFields(existSoda);
+		
+		sodaDAO.update(existSoda);
+		
+		String message = "The soda has been updated successfully.";
+		listSoda(message);
 		
 	}
 
