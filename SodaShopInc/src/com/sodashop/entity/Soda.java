@@ -42,7 +42,6 @@ public class Soda implements java.io.Serializable {
 	private byte[] image;
 	private String base64Image;
 	private float price;
-	private Date publishDate;
 	private Date lastUpdateTime;
 	private BigDecimal quantityInStock;
 	private BigDecimal amountHeld;
@@ -54,19 +53,17 @@ public class Soda implements java.io.Serializable {
 	public Soda() {
 	}
 
-	public Soda(Category category, String name, String description, byte[] image, float price, Date publishDate,
-			Date lastUpdateTime, String manufactor) {
+	public Soda(Category category, String name, String description, byte[] image, float price, Date lastUpdateTime, String manufactor) {
 		this.category = category;
 		this.name = name;
 		this.description = description;
 		this.image = image;
 		this.price = price;
-		this.publishDate = publishDate;
 		this.lastUpdateTime = lastUpdateTime;
 		this.manufacture = manufactor;
 	}
 
-	public Soda(Category category, String name, String description, byte[] image, float price, Date publishDate,
+	public Soda(Category category, String name, String description, byte[] image, float price, 
 			Date lastUpdateTime, BigDecimal quantityInStock, BigDecimal amountHeld, String stockUnits,
 			String manufacture, Set<OrderDetail> orderDetails, Set<Review> reviews) {
 		this.category = category;
@@ -74,7 +71,6 @@ public class Soda implements java.io.Serializable {
 		this.description = description;
 		this.image = image;
 		this.price = price;
-		this.publishDate = publishDate;
 		this.lastUpdateTime = lastUpdateTime;
 		this.quantityInStock = quantityInStock;
 		this.amountHeld = amountHeld;
@@ -142,15 +138,7 @@ public class Soda implements java.io.Serializable {
 		this.price = price;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "publish_date", nullable = false, length = 10)
-	public Date getPublishDate() {
-		return this.publishDate;
-	}
 
-	public void setPublishDate(Date publishDate) {
-		this.publishDate = publishDate;
-	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_update_time", nullable = false, length = 19)

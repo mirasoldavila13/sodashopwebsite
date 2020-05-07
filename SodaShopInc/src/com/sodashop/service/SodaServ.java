@@ -2,6 +2,7 @@ package com.sodashop.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,7 +38,7 @@ public class SodaServ {
 		this.request = request;
 		this.response = response;
 		sodaDAO = new SodaDAO(entityManager);
-		
+		categoryDAO = new CategoryDAO(entityManager);
 	}
 
 
@@ -104,24 +105,17 @@ public class SodaServ {
 		String manufacture = request.getParameter("manufacture");
 		String description = request.getParameter("description");
 		float price = Float.parseFloat(request.getParameter("price"));
-		
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		Date publishDate = null;
-		
-		try {
-			publishDate = dateFormat.parse(request.getParameter("publishDate"));
-		} catch (ParseException ex) {
-			ex.printStackTrace();
-			throw new ServletException("Error parsing publish date (format is MM/dd/yyyy)");
-		}
-				
+		String quantityInStock = request.getParameter("quantity");
+			
 		soda.setName(name);
 		soda.setManufacture(manufacture);
 		soda.setDescription(description);
-		soda.setPublishDate(publishDate);
+		
+		
+		
 		
 		Integer categoryId = Integer.parseInt(request.getParameter("category"));
-		Category category = categoryDAO.get(publishDate);
+		Category category = categoryDAO.get(categoryId);
 		soda.setCategory(category);
 		
 		soda.setPrice(price);

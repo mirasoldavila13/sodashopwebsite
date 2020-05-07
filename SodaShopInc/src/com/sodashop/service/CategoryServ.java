@@ -47,7 +47,7 @@ public class CategoryServ{
 		   
 		RequestDispatcher dispatcher = request.getRequestDispatcher(categoryPage);
 		dispatcher.forward(request, response);
-			
+
 		
 	}
 	

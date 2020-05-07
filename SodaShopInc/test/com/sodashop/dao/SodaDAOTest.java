@@ -51,9 +51,9 @@ public class SodaDAOTest extends DaoTest{
 		
 		existSoda.setPrice(50.99f);
 		
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		Date publishDate = dateFormat.parse("04/01/2020");
-		existSoda.setPublishDate(publishDate);
+//		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+//		Date publishDate = dateFormat.parse("04/01/2020");
+//		existSoda.setPublishDate(publishDate);
 		
 		existSoda.setManufacture("Spacies");
 		Soda updateSoda = sodaDAO.update(existSoda);
@@ -83,9 +83,9 @@ public class SodaDAOTest extends DaoTest{
 		
 		newSoda.setPrice(5.99f);
 		
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		Date publishDate = dateFormat.parse("04/01/2020");
-		newSoda.setPublishDate(publishDate);
+//		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+//		Date publishDate = dateFormat.parse("04/01/2020");
+//		newSoda.setPublishDate(publishDate);
 		
 		newSoda.setManufacture("Spacies");
 		Soda createSoda = sodaDAO.create(newSoda);
