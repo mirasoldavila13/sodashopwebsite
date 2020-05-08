@@ -12,6 +12,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +25,12 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "soda_order", catalog = "sodashopdb")
-@NamedQuery(name="SodaOrder.findAll", query="SELECT s from SodaOrder s")
+@NamedQueries({
+	@NamedQuery(name="SodaOrder.findAll", query="SELECT s FROM SodaOrder s")
+})
+@NamedNativeQuery(name="SodaOrder.findByOrderId", query="SELECT * FROM soda_order WHERE order_id = :id", resultClass=SodaOrder.class)
+@NamedNativeQuery(name="SodaOrder.findByCustomerId", query="select * from soda_order s, customer c where s.customer_id = c.customer_id and c.customer_id = :id", resultClass=SodaOrder.class)
+@NamedNativeQuery(name="SodaOrder.findAllByCustomerId", query="select * from soda_order s, customer c, order_detail o where s.customer_id = c.customer_id and s.order_id = o.order_id and c.customer_id = :id", resultClass=SodaOrder.class)
 public class SodaOrder implements java.io.Serializable {
 
 	private Integer orderId;

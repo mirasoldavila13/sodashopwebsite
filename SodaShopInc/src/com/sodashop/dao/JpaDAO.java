@@ -16,7 +16,7 @@ public class JpaDAO<E> {
 	
 	
 	protected static EntityManager entityManager;
-	//this is the parent class of UserDAO
+	//this is the parent class of all DAOs
 	
 
 	public JpaDAO(EntityManager entityManager) {

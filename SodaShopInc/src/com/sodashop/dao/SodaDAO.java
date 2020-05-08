@@ -15,7 +15,6 @@ public class SodaDAO extends JpaDAO<Soda> implements GenericDAO<Soda> {
 
 	@Override
 	public Soda create(Soda soda) {
-		soda.setLastUpdateTime(new Date());
 		return super.create(soda);
 	}
 
