@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.sodashop.entity.Soda;
 
@@ -52,6 +53,14 @@ public class SodaDAO extends JpaDAO<Soda> implements GenericDAO<Soda> {
 	}
 	public List<Soda> listByCategory(int categoryId) {
 		return super.findWithNamedQuery("Soda.findByCategory", "catId", categoryId);
+	}
+	
+	public List<Soda> listNewSoda() {		
+		Query query = entityManager.createNamedQuery("Soda.listNew");
+		query.setFirstResult(0);
+		query.setMaxResults(4);
+		
+		return query.getResultList();
 	}
 	
 	@Override
