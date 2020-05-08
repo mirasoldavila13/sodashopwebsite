@@ -121,6 +121,15 @@ public class SodaDAOTest extends DaoTest{
 	}
 	
 	@Test
+	public void testListNewSoda() {
+		List<Soda> listNewSoda = sodaDAO.listNewSoda();
+		for (Soda soda : listNewSoda) {
+			System.out.println(soda.getName() + " - " + soda.getLastUpdateTime());
+		}
+		assertEquals(4, listNewSoda.size());
+	}
+	
+	@Test
 	public void testListByCategory() {
 		int categoryId = 4;
 		
