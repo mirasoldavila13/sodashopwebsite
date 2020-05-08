@@ -212,9 +212,16 @@ public class SodaServ {
 
 	public void listSodaByCategory() throws ServletException, IOException {
 		int categoryId = Integer.parseInt(request.getParameter("id"));
+		Category category = categoryDAO.get(categoryId);
+
+		if(category == null) {
+			String message = "Sorry the  category with ID " + categoryId + " is not available";
+			
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("message.jsp").forward(request, response);	
+		}
 		
 		List<Soda> listSoda = sodaDAO.listByCategory(categoryId);
-		Category category = categoryDAO.get(categoryId);
 		List<Category> listCategory = categoryDAO.listAll();
 		
 		request.setAttribute("listCategory", listCategory);
@@ -223,6 +230,30 @@ public class SodaServ {
 		
 		String listPage = "frontend/soda_list_by_category.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(listPage);
+		dispatcher.forward(request, response);
+
+		
+	}
+
+
+
+
+	public void viewSodaDetail() throws ServletException, IOException {
+		Integer sodaId = Integer.parseInt(request.getParameter("id"));
+		Soda soda = sodaDAO.get(sodaId);
+		String page = "frontend/soda_detail.jsp";
+
+		if(soda!= null) {
+			request.setAttribute("soda", soda);
+
+		}
+		else {
+			page = "front/message.jsp";
+			String message = "Sorry the soda with ID" + sodaId + " is not available";
+			request.setAttribute("message", message);
+		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
 
 		
