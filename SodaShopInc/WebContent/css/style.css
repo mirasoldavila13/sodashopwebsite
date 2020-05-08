@@ -97,3 +97,34 @@ table.normal {
 	border: 0;
 }
 
+div.soda_group {
+	width: 80%; 
+	margin: 0 auto;
+}
+
+div.next-row {
+	clear:both;
+}
+
+img.soda-small {
+	width: 128px; height: 164px;
+}
+
+img.soda-large {
+	width: 240px; height: 300px;
+}
+
+#soda-name {
+	font-size: x-large;
+	font-weight: bold;
+}
+
+#manufacture {
+	font-size: large;
+	font-style: italic;
+}
+
+#description {
+	text-align: justify;
+	vertical-align: top;
+}

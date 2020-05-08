@@ -8,8 +8,8 @@
 			<link rel="stylesheet" href="../css/style.css">
 		</head>
 		<body>
-			<jsp:directive.include file="header.jsp"/>
-
+		
+		<jsp:directive.include file="header.jsp"/>
 			
 			<div class="center">
 		<table class="soda">
