@@ -47,7 +47,7 @@ public class CategoryServ{
 		   
 		RequestDispatcher dispatcher = request.getRequestDispatcher(categoryPage);
 		dispatcher.forward(request, response);
-			
+
 		
 	}
 	
@@ -73,7 +73,12 @@ public class CategoryServ{
 	public void editCategory() throws ServletException, IOException {
 		int categoryId = Integer.parseInt(request.getParameter("id"));
 		Category category = categoryDao.get(categoryId);
+		
+		request.setAttribute("category", category);
 		String editPage = "category_form.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(editPage);
+		
+		dispatcher.forward(request, response);
 		
 		if(category == null) {
 			editPage = "message.jsp";
@@ -84,7 +89,7 @@ public class CategoryServ{
 			request.setAttribute("category", category);
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(editPage);
+		dispatcher = request.getRequestDispatcher(editPage);
 		dispatcher.forward(request, response);
 		
 	}

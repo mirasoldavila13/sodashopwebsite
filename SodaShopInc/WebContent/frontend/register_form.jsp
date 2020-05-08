@@ -29,7 +29,7 @@
 					
 						<tr>
 							<td align="right">Password:</td>
-							<td align="left"><input type="password" id="password" name="password" size="45""></td>
+							<td align="left"><input type="password" id="password" name="password" size="45"></td>
 						</tr>
 					
 						<tr>

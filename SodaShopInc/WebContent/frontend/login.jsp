@@ -11,7 +11,7 @@
 		
 			<div align="center">
 				<h2>Customer Login</h2>
-				<form id="LoginForm" action="login" method="post">
+				<form id="LoginForm" action="" method="post">
 					<table>
 						<tr>
 							<td>Email:</td>

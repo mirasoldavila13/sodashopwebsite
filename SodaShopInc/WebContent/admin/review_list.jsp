@@ -44,8 +44,7 @@
 					<td>${review.comment}</td>
 					<td>${review.reviewTime}</td>
 
-					<td><a href="edit_category?id=${review.reviewId}">Edit</a>
-						&nbsp; <a href="javascript:confirmDelete(${review.reviewId})">Delete</a>
+					<td><a href="javascript:confirmDelete(${review.reviewId})">Delete</a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -53,16 +52,15 @@
 	</div>
 	<jsp:directive.include file="footer.jsp" />
 	<script>
-				function confirmDelete(reviewId){
+		function confirmDelete(reviewId) {
 
-				if(confirm('Are you sure you want to delete review ' + reviewId + '?')){
-					//if user presses ok, set the location property of the current window to the url of the servlet
-					window.location = 'delete_review?id=' + reviewId;
-					}
-				}
-
-
-		</script>
+			if (confirm('Are you sure you want to delete review ' + reviewId
+					+ '?')) {
+				//if user presses ok, set the location property of the current window to the url of the servlet
+				window.location = 'delete_review?id=' + reviewId;
+			}
+		}
+	</script>
 </body>
 
 </html>

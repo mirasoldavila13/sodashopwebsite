@@ -1,7 +1,6 @@
 package com.sodashop.entity;
-// Generated Apr 27, 2020, 1:10:24 PM by Hibernate Tools 5.2.12.Final
+// Generated May 7, 2020, 4:49:55 AM by Hibernate Tools 5.2.12.Final
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -12,24 +11,23 @@ import javax.persistence.Embeddable;
 public class OrderDetailId implements java.io.Serializable {
 
 	private Integer orderId;
-	private Date dateOrdered;
-	private Integer quantity;
-	private Float subtotal;
 	private Integer sodaId;
+	private int quantity;
+	private float subtotal;
 
 	public OrderDetailId() {
 	}
 
-	public OrderDetailId(Date dateOrdered) {
-		this.dateOrdered = dateOrdered;
-	}
-
-	public OrderDetailId(Integer orderId, Date dateOrdered, Integer quantity, Float subtotal, Integer sodaId) {
-		this.orderId = orderId;
-		this.dateOrdered = dateOrdered;
+	public OrderDetailId(int quantity, float subtotal) {
 		this.quantity = quantity;
 		this.subtotal = subtotal;
+	}
+
+	public OrderDetailId(Integer orderId, Integer sodaId, int quantity, float subtotal) {
+		this.orderId = orderId;
 		this.sodaId = sodaId;
+		this.quantity = quantity;
+		this.subtotal = subtotal;
 	}
 
 	@Column(name = "order_id")
@@ -41,33 +39,6 @@ public class OrderDetailId implements java.io.Serializable {
 		this.orderId = orderId;
 	}
 
-	@Column(name = "date_ordered", nullable = false, length = 10)
-	public Date getDateOrdered() {
-		return this.dateOrdered;
-	}
-
-	public void setDateOrdered(Date dateOrdered) {
-		this.dateOrdered = dateOrdered;
-	}
-
-	@Column(name = "quantity")
-	public Integer getQuantity() {
-		return this.quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-	@Column(name = "subtotal", precision = 12, scale = 0)
-	public Float getSubtotal() {
-		return this.subtotal;
-	}
-
-	public void setSubtotal(Float subtotal) {
-		this.subtotal = subtotal;
-	}
-
 	@Column(name = "soda_id")
 	public Integer getSodaId() {
 		return this.sodaId;
@@ -75,6 +46,24 @@ public class OrderDetailId implements java.io.Serializable {
 
 	public void setSodaId(Integer sodaId) {
 		this.sodaId = sodaId;
+	}
+
+	@Column(name = "quantity", nullable = false)
+	public int getQuantity() {
+		return this.quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	@Column(name = "subtotal", nullable = false, precision = 12, scale = 0)
+	public float getSubtotal() {
+		return this.subtotal;
+	}
+
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
 	}
 
 	public boolean equals(Object other) {
@@ -88,25 +77,18 @@ public class OrderDetailId implements java.io.Serializable {
 
 		return ((this.getOrderId() == castOther.getOrderId()) || (this.getOrderId() != null
 				&& castOther.getOrderId() != null && this.getOrderId().equals(castOther.getOrderId())))
-				&& ((this.getDateOrdered() == castOther.getDateOrdered())
-						|| (this.getDateOrdered() != null && castOther.getDateOrdered() != null
-								&& this.getDateOrdered().equals(castOther.getDateOrdered())))
-				&& ((this.getQuantity() == castOther.getQuantity()) || (this.getQuantity() != null
-						&& castOther.getQuantity() != null && this.getQuantity().equals(castOther.getQuantity())))
-				&& ((this.getSubtotal() == castOther.getSubtotal()) || (this.getSubtotal() != null
-						&& castOther.getSubtotal() != null && this.getSubtotal().equals(castOther.getSubtotal())))
 				&& ((this.getSodaId() == castOther.getSodaId()) || (this.getSodaId() != null
-						&& castOther.getSodaId() != null && this.getSodaId().equals(castOther.getSodaId())));
+						&& castOther.getSodaId() != null && this.getSodaId().equals(castOther.getSodaId())))
+				&& (this.getQuantity() == castOther.getQuantity()) && (this.getSubtotal() == castOther.getSubtotal());
 	}
 
 	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + (getOrderId() == null ? 0 : this.getOrderId().hashCode());
-		result = 37 * result + (getDateOrdered() == null ? 0 : this.getDateOrdered().hashCode());
-		result = 37 * result + (getQuantity() == null ? 0 : this.getQuantity().hashCode());
-		result = 37 * result + (getSubtotal() == null ? 0 : this.getSubtotal().hashCode());
 		result = 37 * result + (getSodaId() == null ? 0 : this.getSodaId().hashCode());
+		result = 37 * result + this.getQuantity();
+		result = 37 * result + (int) this.getSubtotal();
 		return result;
 	}
 

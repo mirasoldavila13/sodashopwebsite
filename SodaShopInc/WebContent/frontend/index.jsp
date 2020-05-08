@@ -12,11 +12,31 @@
 
 			<div align="center">
 				<br /><br />
-				<h3>This is the main content:</h3>	
 				<h2>New Soda's</h2>
-				<h2>Best-selling Sodas </h2>
-				<h2>Most Favored Sodas</h2>
-				<br/><br />
+				<div align="center">
+		<c:forEach items="${listNewSoda}" var="soda">
+			<div style="display: inline-block">
+				<div>
+					<a href="view_soda?id=${soda.sodaId}">
+						<img class="soda-small" src="data:image/jpg;base64,${soda.base64Image}" />
+					</a>
+				</div>
+				<div>
+					<a href="view_soda?id=${soda.sodaId}">
+						<b>${soda.name}</b>
+					</a>
+				</div>
+				<div>
+			
+				</div>
+				<div><i>by ${soda.manufactor}</i></div>
+				<div><b>$${soda.price}</b></div>
+			</div>
+			
+		</c:forEach>
+	</div>
+			<h2>Best-Selling Sodas:</h2>
+			<h2>Most-Favored Sodas:</h2>
 			</div>
 			
 			<jsp:directive.include file="footer.jsp"/>

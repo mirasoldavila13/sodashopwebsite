@@ -1,5 +1,5 @@
 package com.sodashop.entity;
-// Generated Apr 27, 2020, 1:10:24 PM by Hibernate Tools 5.2.12.Final
+// Generated May 7, 2020, 4:49:55 AM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "review", catalog = "sodashopdb")
+
 @NamedQueries({
 	@NamedQuery(name = "Review.listAll", query = "SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
 	@NamedQuery(name = "Review.countAll", query = "SELECT COUNT(r.reviewId) FROM Review r"),
@@ -29,6 +30,7 @@ import javax.persistence.TemporalType;
 	@NamedQuery(name = "Review.countByCustomer", query = "SELECT COUNT(r.reviewId) FROM Review r WHERE r.customer.customerId =:customerId"),
 	@NamedQuery(name = "Review.findBySoda",  query = "SELECT r FROM Review r WHERE r.soda.sodaId =:sodaId")
 })
+
 public class Review implements java.io.Serializable {
 
 	private Integer reviewId;
