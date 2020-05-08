@@ -41,7 +41,7 @@ public class ReviewDAOTest {
 		List<Review> listReviews = reviewDAO.listAll();
 		for(Review review: listReviews) {
 			// if you would like to see the reviews
-			System.out.println(review.getComment());
+			System.out.println(review.getComment() + " " + review.getReviewTime());
 		}
 		
 		assertTrue(listReviews.size() > 0);
@@ -50,20 +50,16 @@ public class ReviewDAOTest {
 	
 	@Test
 	public void testCreateReview() {
-		Customer c1 = new Customer ();
+		Customer c1 = new Customer();
+		c1.setCustomerId(2);
 		Soda s1 = new Soda();
-		Date reviewTime = new Date();
-		c1.setCustomerId(1);
-		s1.setSodaId(1);
+		s1.setSodaId(4);
 		Review r1 = new Review();
-		r1.setComment("So very very good");
 		r1.setCustomer(c1);
-		r1.setHeadline("Awesome");
-		r1.setRating(8);
-		r1.setReviewId(7);
 		r1.setSoda(s1);
-		r1.setReviewTime(reviewTime);
-		
+		r1.setComment("So very good");
+		r1.setHeadline("Cool!");
+		r1.setRating(9);
 		r1 = reviewDAO.create(r1);
 		assertTrue(r1.getReviewId()>0);
 	}
@@ -114,7 +110,19 @@ public class ReviewDAOTest {
 	@Test
 	public void testCount() {
 		long totalReviews = reviewDAO.count();
-		assertEquals(8, totalReviews);
+		assertEquals(10, totalReviews);
+	}
+	
+	@Test
+	public void testFindByCustomerAndSoda() {
+		List<Review> listReviews = reviewDAO.findByCustomerAndSoda(3,1);
+		for(Review review: listReviews) {
+			// if you would like to see the reviews
+			System.out.println(review.getComment());
+		}
+		
+		assertEquals(1, listReviews.size());
+		
 	}
 	
 //	@Test

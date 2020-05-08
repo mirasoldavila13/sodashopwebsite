@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sodashop.dao.ReviewDAO;
+import com.sodashop.entity.Customer;
 import com.sodashop.entity.Review;
+import com.sodashop.entity.Soda;
 
 public class ReviewServ {
 	protected EntityManager entityManager;
@@ -32,7 +34,7 @@ public class ReviewServ {
 	
 	public void listReview(String message) throws ServletException, IOException {
 		List<Review> listReview = reviewDAO.listAll();
-		request.setAttribute("listReview", listReview);
+		request.setAttribute("reviewList", listReview);
 		
 		if(message != null) {
 			request.setAttribute("message", message);
@@ -45,18 +47,27 @@ public class ReviewServ {
 		
 	}
 	
+	
+	
 	public void createReview() throws ServletException, IOException {
-		// might have to change input names in jsp
 		
+		
+		Soda soda = new Soda();
+		Customer customer = new Customer();
+		soda.setSodaId(1);
+		customer.setCustomerId(1);
+//		int customerId = Integer.parseInt(request.getParameter("customerId"));
+//		int sodaId = Integer.parseInt(request.getParameter("sodaId"));
 		String headline = request.getParameter("headline");
 		String comment = request.getParameter("comment");
 		int rating = Integer.parseInt(request.getParameter("rating"));
-		
-		
 		Review newReview = new Review();
 		newReview.setComment(comment);
 		newReview.setHeadline(headline);
 		newReview.setRating(rating);
+		newReview.setCustomer(customer);
+		newReview.setSoda(soda);
+		
 		
 		reviewDAO.create(newReview);
 		listReview("New Review created");
@@ -65,25 +76,25 @@ public class ReviewServ {
 		
 	}
 	
-	public void editReview() throws ServletException, IOException{
-		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
-		Review review = reviewDAO.get(reviewId);
-		// Might need to actual name of jsp
-		String editPage = "review_form.jsp";
-		
-		if(review == null) {
-			editPage = "message.jsp";
-			String errorMessage = "Could not find review with ID " + reviewId;
-			request.setAttribute("message", errorMessage);
-		} else {
-			request.setAttribute("review", review);
-			
-			
-		}
-		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
-		requestDispatcher.forward(request, response);
-	}
+//	public void editReview() throws ServletException, IOException{
+//		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
+//		Review review = reviewDAO.get(reviewId);
+//		// Might need to actual name of jsp
+//		String editPage = "review_form.jsp";
+//		
+//		if(review == null) {
+//			editPage = "message.jsp";
+//			String errorMessage = "Could not find review with ID " + reviewId;
+//			request.setAttribute("message", errorMessage);
+//		} else {
+//			request.setAttribute("review", review);
+//			
+//			
+//		}
+//		
+//		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+//		requestDispatcher.forward(request, response);
+//	}
 	
 	public void updateReview() throws ServletException, IOException {
 		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
@@ -91,7 +102,7 @@ public class ReviewServ {
 	}
 	
 	public void deleteReview() throws ServletException, IOException{
-		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
+		Integer reviewId = Integer.parseInt(request.getParameter("reviewId"));
 		
 		Review review = reviewDAO.get(reviewId);
 		String message = "Review has successfully deleted";

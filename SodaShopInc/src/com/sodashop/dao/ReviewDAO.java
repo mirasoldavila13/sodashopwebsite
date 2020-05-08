@@ -1,5 +1,6 @@
 package com.sodashop.dao;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,12 +19,8 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
 	}
 
 	public Review create(Review review) {
-		return super.update(review);
-	}
-	
-	@Override
-	public Review update(Review review) {
-		return super.update(review);
+		review.setReviewTime(new Date());
+		return super.create(review);
 	}
 
 	@Override
@@ -52,13 +49,30 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
 		return null;
 	}
 
-	public List<Review> findByCustomerandSoda(Objects customerId, Objects sodaId) {
-
-		Map<String, Objects> parameters = new HashMap();
-		parameters.put("customerId", customerId);
-		parameters.put("sodaId", sodaId);
-		List<Review> reviews = super.findWithNamedQuery("Review.findByCustomerandSoda", null, parameters);
-		return reviews;
+	@SuppressWarnings("unchecked")
+	public List<Review> findByCustomerAndSoda(Integer customerId, Integer sodaId) {
+		
+		return entityManager.createQuery("SELECT r FROM Review r "
+				+ "WHERE r.customer.customerId =:customerId AND r.soda.sodaId =:sodaId").setParameter("customerId", customerId).setParameter("sodaId", sodaId).getResultList();
+	
+}
+//	public Review findByCustomerAndSoda(Integer customerId, Integer sodaId) {
+//		Map<String, Object> parameters = new HashMap<>();
+//		parameters.put("customerId", customerId);
+//		parameters.put("sodaId", sodaId);
+//		
+//		List<Review> result = super.findWithNamedQuery("Review.findByCustomerAndSoda", parameters);
+//		
+//		if (!result.isEmpty()) {
+//			return result.get(0);
+//		}
+//		
+//		return null;
+//	}
+	
+	public List<Review> listMostRecent(){
+		return null;
+		
 	}
 
 	public long countByCustomer(Object customerId) {

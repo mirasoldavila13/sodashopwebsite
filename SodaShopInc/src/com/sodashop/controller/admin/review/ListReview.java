@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sodashop.controller.Base;
 import com.sodashop.service.ReviewServ;
 
-@WebServlet("/admin/listreview")
+@WebServlet("/admin/review")
 public class ListReview extends Base {
 	private static final long serialVersionUID = 1L;
     

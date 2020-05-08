@@ -24,10 +24,11 @@
 			<tr>
 				<th>Index</th>
 				<th>ID</th>
-				<th>Soda</th>
+				<th>Customer</th>
+				<th>Soda ID</th>
 				<th>Rating</th>
 				<th>Headline</th>
-				<th>Customer</th>
+				<th>Comment</th>
 				<th>Review On</th>
 				<th>Actions</th>
 			</tr>
@@ -36,11 +37,12 @@
 				<tr>
 					<td>${status.index+1}</td>
 					<td>${review.reviewId}</td>
-					<td>${soda.name}</td>
-					<td>${soda.rating}</td>
+					<td>${review.customer.fullname}</td>
+					<td>${review.soda.sodaId}</td>
+					<td>${review.rating}</td>
 					<td>${review.headline}</td>
 					<td>${review.comment}</td>
-					<td>${review.review_time}</td>
+					<td>${review.reviewTime}</td>
 
 					<td><a href="edit_category?id=${review.reviewId}">Edit</a>
 						&nbsp; <a href="javascript:confirmDelete(${review.reviewId})">Delete</a>
@@ -50,6 +52,17 @@
 		</table>
 	</div>
 	<jsp:directive.include file="footer.jsp" />
+	<script>
+				function confirmDelete(reviewId){
+
+				if(confirm('Are you sure you want to delete review ' + reviewId + '?')){
+					//if user presses ok, set the location property of the current window to the url of the servlet
+					window.location = 'delete_review?id=' + reviewId;
+					}
+				}
+
+
+		</script>
 </body>
 
 </html>

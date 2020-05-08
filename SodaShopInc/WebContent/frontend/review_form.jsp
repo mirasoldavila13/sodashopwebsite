@@ -12,21 +12,16 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<jsp:directive.include file="header.jsp" />
 
 	<div align="center">
-		<form id="reviewForm" action="submit_review" method="post">
+		<form id="reviewForm" action="create_review" method="post">
 			<table class="form">
 
 				<tr>
-					<td><h2>Your Reviews</h2></td>
+					<td><h2>Your Review</h2></td>
 					<td>&nbsp;</td>
 					<td><h2>${loggedCustomer.fullname}</h2></td>
 				</tr>
 				<tr>
-					<td align="right">Name:</td>
-					<td align="left"><input type="text" id="fullName"
-						name="fullName" size="20" value="${customer.fullName}" /></td>
-				</tr>
-				<tr>
-					<td><span id="sodaName">${soda.name}</span><br /> <img
+					<td><span id="sodaId">${soda.sodaId}</span><br /> <img
 						src="data:image/jpg;base64,${soda.base64Image}" /></td>
 				</tr>
 				<tr>

@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 	@NamedQuery(name = "Review.listAll", query = "SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
 	@NamedQuery(name = "Review.countAll", query = "SELECT COUNT(r.reviewId) FROM Review r"),
-	@NamedQuery(name = "Review.findByCustomerandSoda",  query = "SELECT r FROM Review r WHERE r.customer.customerId =:customerId AND r.soda.sodaId =:sodaId"),
+	@NamedQuery(name = "Review.findByCustomerandSoda",  query = "SELECT r FROM Review r WHERE r.customer.customerId =:customerId AND r.soda.sodaId =:sodaId ORDER BY r.reviewTime DESC"),
 	@NamedQuery(name = "Review.mostFavoredSodas", query = "SELECT r.soda, COUNT(r.soda.sodaId) AS ReviewCount, AVG(r.rating) as AvgRating FROM Review r " + "GROUP BY r.soda.sodaId HAVING AVG(r.rating) >= 4.0 " + "ORDER BY ReviewCount DESC, AvgRating DESC"),
 	@NamedQuery(name = "Review.countByCustomer", query = "SELECT COUNT(r.reviewId) FROM Review r WHERE r.customer.customerId =:customerId"),
 	@NamedQuery(name = "Review.findBySoda",  query = "SELECT r FROM Review r WHERE r.soda.sodaId =:sodaId")
