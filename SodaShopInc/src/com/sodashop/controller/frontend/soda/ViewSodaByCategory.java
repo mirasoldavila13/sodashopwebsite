@@ -1,4 +1,4 @@
-package com.sodashop.controller.frontend;
+package com.sodashop.controller.frontend.soda;
 
 import com.sodashop.controller.Base;
 import com.sodashop.service.SodaServ;
