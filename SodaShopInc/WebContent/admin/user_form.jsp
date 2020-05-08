@@ -60,8 +60,7 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<jsp:directive.include file="footer.jsp" />
 </body>
 <script type="text/javascript">
-		
-
+	
 		function validateFormInput(){
 			var emailField = document.getElementById("email");	//this a reference to email
 			var nameField = document.getElementById("fullName");
