@@ -17,7 +17,7 @@ import com.sodashop.service.SodaServ;
 		maxFileSize = 1024 * 300,		// 300 KB
 		maxRequestSize = 1024 * 1024	// 1 MB 
 )
-public class EditSoda extends Base {
+public class EditSoda extends  HttpServlet{
 	private static final long serialVersionUID = 1L;
   
     public EditSoda() {
@@ -27,7 +27,7 @@ public class EditSoda extends Base {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SodaServ sodaServ = new SodaServ(entityManager,request, response);
+		SodaServ sodaServ = new SodaServ(request, response);
 		sodaServ.editSoda();
 	}
 

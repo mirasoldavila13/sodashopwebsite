@@ -12,12 +12,12 @@ import com.sodashop.service.SodaServ;
 
 
 @WebServlet("/admin/delete_soda")
-public class DeleteSoda extends Base {
+public class DeleteSoda extends  HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SodaServ sodaServ = new SodaServ(entityManager,request, response);
+		SodaServ sodaServ = new SodaServ(request, response);
 		sodaServ.deleteSoda();
 	}
 

@@ -17,7 +17,7 @@ import com.sodashop.service.UserServ;
  
 
 @WebServlet("/admin/list_users")
-public class ListUsers extends Base {
+public class ListUsers extends  HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
@@ -28,7 +28,7 @@ public class ListUsers extends Base {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserServ userServ = new UserServ(entityManager,request,response);
+		UserServ userServ = new UserServ(request,response);
 		userServ.listUser(); 
 	}
 
