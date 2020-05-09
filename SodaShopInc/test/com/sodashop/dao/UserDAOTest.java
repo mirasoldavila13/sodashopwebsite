@@ -19,16 +19,17 @@ import org.junit.Test;
 
 import com.sodashop.entity.Users;
 
-public class UserDAOTest  extends DaoTest {
+public class UserDAOTest {
 	
 	private static UserDAO userDAO;
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		DaoTest.setUpBeforeClass();
-		userDAO = new UserDAO(entityManager);
+		userDAO = new UserDAO();
 
 	}
+	
+	
 
 	@Test
 	public void testCreateUsers() {
@@ -99,6 +100,15 @@ public class UserDAOTest  extends DaoTest {
 		userDAO.delete(userId);
 	}
 	
+	
+	@Test
+	public void testCheckLoginPass() {
+		String email = "mirasoldavila13@aim.com";
+		String password = "hello";
+		boolean actual = userDAO.checkLogin(email, password);
+		assertTrue(actual);
+
+	}
 	@Test
 	public void testFindEmail() {
 		String email = "you@gmail.com";
@@ -125,11 +135,18 @@ public class UserDAOTest  extends DaoTest {
 		/*this test is test to see if I have 10 users in the db  with the total users
 		 * when you do this test please refer to how many rows/users you have
 		 * */
-		assertEquals(10,totalUsers);
+		assertEquals(1,totalUsers);
 	}
+	
+	
+
+	
+	
+	
+	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		DaoTest.tearDownAfterClass();
+		userDAO.close();
 	}
 
 }

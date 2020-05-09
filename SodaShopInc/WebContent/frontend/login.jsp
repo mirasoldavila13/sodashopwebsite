@@ -11,7 +11,7 @@
 		
 			<div align="center">
 				<h2>Customer Login</h2>
-				<form id="LoginForm" action="login" method="post">
+				<form id="LoginForm" action="" method="post">
 					<table>
 						<tr>
 							<td>Email:</td>
@@ -31,4 +31,29 @@
 			</div>
 			<jsp:directive.include file="footer.jsp"/>
 		</body>
+		<script type="text/javascript">
+
+	$(document).ready(function() {
+		$("#loginForm").validate({
+			rules: {
+				email: {
+					required: true,
+					email: true
+				},
+		
+				password: "required",
+			},
+			
+			messages: {
+				email: {
+					required: "Please enter email",
+					email: "Please enter an valid email address"
+				},
+				
+				password: "Please enter password"
+			}
+		});
+
+	});
+</script>	
 	</html>
