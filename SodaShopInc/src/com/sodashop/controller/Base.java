@@ -1,4 +1,4 @@
-package com.sodashop.controller.admin;
+package com.sodashop.controller;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,5 +22,4 @@ public abstract class Base extends HttpServlet {
 		entityManager.close();
 		entityManagerFactory.close();
 	}
-	
 }

@@ -1,5 +1,5 @@
 package com.sodashop.service;
-import java.util.List;
+import java.util.List; 
 import java.io.IOException; 
 import javax.persistence.EntityManager; 
 import javax.persistence.EntityManagerFactory;
@@ -9,22 +9,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sodashop.controller.admin.Base;
+import com.sodashop.controller.Base;
 import com.sodashop.dao.UserDAO;
+import com.sodashop.entity.Category;
 import com.sodashop.entity.Users;
 
 public class UserServ  {
-	protected EntityManager entityManager;
 	private UserDAO userDAO;
 	private HttpServletRequest request;
 	private  HttpServletResponse response;
 
-	public UserServ(EntityManager entityManager,HttpServletRequest request, HttpServletResponse response) {
+	public UserServ(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
 		// this is the instance of UserDAO class
-		userDAO = new UserDAO(entityManager);
+		userDAO = new UserDAO();
 	}
 	
 	public void listUser() throws ServletException, IOException {
@@ -97,7 +96,9 @@ public class UserServ  {
 		
 //		System.out.println(userId + ": " + email + "," + fullName + "," + password);
 		Users userById = userDAO.get(userId);
-		Users userByEmail = userDAO.get(email);
+//		Users userByEmail = userDAO.get(email);
+		Users userByEmail = userDAO.findByEmail(email);
+
 		//validate
 		if(userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
 			String message = "Could not update user. User with email " + email + " already exists.";
@@ -133,6 +134,24 @@ public class UserServ  {
 		}		
 	}
 	
+	public void login() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		boolean login = userDAO.checkLogin(email, password);
+		
+		if(login) {
+			request.getSession().setAttribute("userEmail", email);
+			//after use is athenticated we shou the admin homepage
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/");
+			dispatcher.forward(request, response);
+		}
+		else {
+			String message = "Login Failed";
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
+	}
 	
 	
 }

@@ -6,6 +6,9 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<head>
 		<meta charset="UTF-8">
 		<title>Create New Category</title>
+		<link rel="stylesheet" href="../css/style.css">
+		<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 	</head>
 	
 	<body>
@@ -13,7 +16,7 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<jsp:directive.include file="header.jsp" />
 	
 	<div align="center">
-		<h2>
+		<h2 class="pageheading">
 			<c:if test="${category != null}">Edit Category</c:if>
 			<c:if test="${category == null}">Create New Category</c:if>
 		</h2>

@@ -23,13 +23,13 @@
 						</tr>
 						<tr>
 							<td align="right">Full Name:</td>
-							<td align="left"><input type="text" id="fullName" name="fullNames" size="45"/>
+							<td align="left"><input type="text" id="fullName" name="fullName" size="45"/>
 							</td>
 						</tr>
 					
 						<tr>
 							<td align="right">Password:</td>
-							<td align="left"><input type="password" id="password" name="password" size="45""></td>
+							<td align="left"><input type="password" id="password" name="password" size="45"></td>
 						</tr>
 					
 						<tr>

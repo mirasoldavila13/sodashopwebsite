@@ -11,8 +11,8 @@ import com.sodashop.entity.Users;
 public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category> {
 	
 	
-	public CategoryDAO(EntityManager entityManager) {
-		super(entityManager);
+	public CategoryDAO() {
+
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category
 
 	@Override
 	public long count() {
-		return super.countQuery("Category.countAll");
+		return super.countWithNamedQuery("Category.countAll");
 	}
 	
 	public Category findByName(String categoryName) {

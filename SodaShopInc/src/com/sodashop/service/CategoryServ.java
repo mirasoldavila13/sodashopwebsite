@@ -1,6 +1,6 @@
 package com.sodashop.service;
 
-import java.util.List;
+import java.util.List;  
 import java.io.IOException;
 
 import javax.persistence.EntityManager;
@@ -11,25 +11,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sodashop.controller.admin.Base;
+import com.sodashop.controller.Base;
 import com.sodashop.dao.CategoryDAO;
 import com.sodashop.dao.UserDAO;
 import com.sodashop.entity.Category;
 import com.sodashop.entity.Users;
 
 public class CategoryServ{
-	private EntityManager entityManager;
 	private CategoryDAO categoryDao;
 	private HttpServletRequest request;
 	private  HttpServletResponse response;
 	
 	
-	public CategoryServ(EntityManager entityManager,HttpServletRequest request, HttpServletResponse response) {
+	public CategoryServ(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
 		// this is the instance of UserDAO class
-		categoryDao = new CategoryDAO(entityManager);
+		categoryDao = new CategoryDAO();
 	}
 	
 	public void listCategory() throws ServletException, IOException {
@@ -47,7 +45,7 @@ public class CategoryServ{
 		   
 		RequestDispatcher dispatcher = request.getRequestDispatcher(categoryPage);
 		dispatcher.forward(request, response);
-			
+
 		
 	}
 	
@@ -68,6 +66,71 @@ public class CategoryServ{
 			listCategory(message);
 			
 		}
+	}
+	
+	public void editCategory() throws ServletException, IOException {
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		Category category = categoryDao.get(categoryId);
+		
+		request.setAttribute("category", category);
+		String editPage = "category_form.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(editPage);
+		
+		dispatcher.forward(request, response);
+		
+		if(category == null) {
+			editPage = "message.jsp";
+			String errorMessage = "Could not find Category with ID " + categoryId;
+			request.setAttribute("message", errorMessage);
+		}
+		else {
+			request.setAttribute("category", category);
+		}
+		
+		dispatcher = request.getRequestDispatcher(editPage);
+		dispatcher.forward(request, response);
+		
+	}
+	
+	public void updateCreate() throws ServletException, IOException {
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		String CategoryName = request.getParameter("name");
+		
+		Category categoryById = categoryDao.get(categoryId);
+		Category categoryByName = categoryDao.findByName(CategoryName);
+		
+		if(categoryByName != null && categoryById.getCategoryId() != categoryByName.getCategoryId()) {
+			String message = "Could not update category. Category with name" + CategoryName + " already exists.";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			categoryById.setName(CategoryName);
+			categoryDao.update(categoryById);
+			String message = "Category has been updated successfully";
+			listCategory(message);
+		}
+
+	}
+
+	public void deleteCategory() throws ServletException, IOException {
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		Category category = categoryDao.get(categoryId);
+		String message;
+		
+		if(category == null) {
+			message = "Category with ID " + categoryId + " doesn't exist, or has been deleted by admin";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("message.jsp").forward(request, response);	
+		}
+		else {
+			categoryDao.delete(categoryId);
+			message = "The Category " + categoryId + " has been deleted successfully";
+			listCategory(message);
+		}
+		
 	}
 }
 
