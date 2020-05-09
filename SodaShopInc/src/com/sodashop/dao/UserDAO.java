@@ -10,8 +10,7 @@ import com.sodashop.entity.Users;
 
 public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 
-	public UserDAO(EntityManager entityManager) {
-		super(entityManager);
+	public UserDAO() {
 	}
 	//create delegates to call its superclass; uses the specific entity type USer
 	
@@ -52,7 +51,7 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 	//returns a single list
 	@Override
 	public long count() {
-		return super.countQuery("Users.countAll");
+		return super.countWithNamedQuery("Users.countAll");
 		
 	}
 	

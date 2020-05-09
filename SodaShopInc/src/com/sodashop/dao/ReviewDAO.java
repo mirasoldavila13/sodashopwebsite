@@ -13,8 +13,7 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
 
 	
 
-	public ReviewDAO(EntityManager entityManager) {
-		super(entityManager);
+	public ReviewDAO() {
 	}
 
 	public Review create(Review review) {
@@ -37,14 +36,6 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
 	public List<Review> listAll() {
 		return super.findWithNamedQuery("Review.listAll");
 	}
-
-
-//	@SuppressWarnings("unchecked")
-//	public List<Review> findByCustomerAndSoda(Integer customerId, Integer sodaId) {
-//		
-//		return entityManager.createQuery("SELECT r FROM Review r "
-//				+ "WHERE r.customer.customerId =:customerId AND r.soda.sodaId =:sodaId").setParameter("customerId", customerId).setParameter("sodaId", sodaId).getResultList();
-//	
 
 	public Review findByCustomerAndSoda(Integer customerId, Integer sodaId) {
 		Map<String, Object> parameters = new HashMap<>();

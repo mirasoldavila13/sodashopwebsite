@@ -17,7 +17,7 @@ import com.sodashop.entity.Category;
 import com.sodashop.entity.Soda;
 
 @WebServlet("")
-public class HomeServlet extends Base {
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     public HomeServlet() {
@@ -26,8 +26,8 @@ public class HomeServlet extends Base {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//display the categories of soda
-				CategoryDAO categoryDao = new CategoryDAO(entityManager);
-				SodaDAO sodaDAO = new SodaDAO(entityManager);
+				CategoryDAO categoryDao = new CategoryDAO();
+				SodaDAO sodaDAO = new SodaDAO();
 				List<Category> listCategory = categoryDao.listAll();
 				List<Soda> listNewSoda = sodaDAO.listNewSoda();
 

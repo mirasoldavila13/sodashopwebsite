@@ -38,7 +38,6 @@ import javax.persistence.UniqueConstraint;
 	@NamedQuery(name = "Soda.listNew", query = "SELECT s FROM Soda s ORDER BY s.lastUpdateTime DESC")
 })
 public class Soda implements java.io.Serializable {
-
 	private Integer sodaId;
 	private Category category;
 	private String name;
@@ -95,7 +94,7 @@ public class Soda implements java.io.Serializable {
 		this.sodaId = sodaId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id", nullable = false)
 	public Category getCategory() {
 		return this.category;

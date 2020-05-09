@@ -11,8 +11,7 @@ import com.sodashop.entity.Customer;
 
 public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer> {
 
-	public CustomerDAO(EntityManager entityManager) {
-		super(entityManager);
+	public CustomerDAO() {
 	}
 	@Override
 	public Customer create(Customer customer) {

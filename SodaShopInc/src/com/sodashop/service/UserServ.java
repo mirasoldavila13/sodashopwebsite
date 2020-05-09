@@ -15,17 +15,15 @@ import com.sodashop.entity.Category;
 import com.sodashop.entity.Users;
 
 public class UserServ  {
-	protected EntityManager entityManager;
 	private UserDAO userDAO;
 	private HttpServletRequest request;
 	private  HttpServletResponse response;
 
-	public UserServ(EntityManager entityManager,HttpServletRequest request, HttpServletResponse response) {
+	public UserServ(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
 		// this is the instance of UserDAO class
-		userDAO = new UserDAO(entityManager);
+		userDAO = new UserDAO();
 	}
 	
 	public void listUser() throws ServletException, IOException {

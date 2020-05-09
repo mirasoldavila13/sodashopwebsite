@@ -13,7 +13,7 @@ import com.sodashop.service.UserServ;
 
 
 @WebServlet("/admin/edit_user")
-public class EditUser extends Base {
+public class EditUser extends  HttpServlet {
 	private static final long serialVersionUID = 1L;
   
     public EditUser() {
@@ -22,7 +22,7 @@ public class EditUser extends Base {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserServ userServ = new UserServ(entityManager,request, response);
+		UserServ userServ = new UserServ(request, response);
 		userServ.editUser();
 	}
 

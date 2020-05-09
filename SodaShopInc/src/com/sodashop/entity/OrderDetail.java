@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -16,12 +18,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "order_detail", catalog = "sodashopdb")
+@NamedQueries({
+	@NamedQuery(name = "OrderDetail.bestSelling", query = "SELECT od.soda FROM OrderDetail od GROUP by od.soda.sodaId " + "ORDER BY SUM(od.quantity) DESC"),
+	@NamedQuery(name = "OrderDetail.countBySoda", query = "SELECT COUNT(*) FROM OrderDetail od WHERE od.soda.sodaId =:sodaId")
+	
+})
 public class OrderDetail implements java.io.Serializable {
 
-	private OrderDetailId id;
+	private OrderDetailId id = new OrderDetailId();
 	private Soda soda;
 	private SodaOrder sodaOrder;
-
+	private int quantity;
+	private float subtotal;
+	
 	public OrderDetail() {
 	}
 
@@ -49,8 +58,8 @@ public class OrderDetail implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "soda_id", insertable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "soda_id", insertable = false, updatable = false, nullable = false)
 	public Soda getSoda() {
 		return this.soda;
 	}
@@ -67,6 +76,25 @@ public class OrderDetail implements java.io.Serializable {
 
 	public void setSodaOrder(SodaOrder sodaOrder) {
 		this.sodaOrder = sodaOrder;
+		this.id.setSodaOrder(sodaOrder);
 	}
+	
+	@Column(name = "quantity", nullable = false)
+	public int getQuantity() {
+		return this.quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	@Column(name = "subtotal", nullable = false, precision = 12, scale = 0)
+	public float getSubtotal() {
+		return this.subtotal;
+	}
+
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
+	}	
 
 }

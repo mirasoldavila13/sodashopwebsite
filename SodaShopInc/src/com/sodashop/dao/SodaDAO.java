@@ -10,8 +10,7 @@ import com.sodashop.entity.Soda;
 
 public class SodaDAO extends JpaDAO<Soda> implements GenericDAO<Soda> {
 
-	public SodaDAO(EntityManager entityManager) {
-		super(entityManager);
+	public SodaDAO() {
 	}
 
 	@Override
@@ -56,16 +55,17 @@ public class SodaDAO extends JpaDAO<Soda> implements GenericDAO<Soda> {
 	}
 	
 	public List<Soda> listNewSoda() {		
-		Query query = entityManager.createNamedQuery("Soda.listNew");
-		query.setFirstResult(0);
-		query.setMaxResults(4);
-		
-		return query.getResultList();
+		return super.findWithNamedQuery("Soda.listNew", 0, 4);
 	}
 	
 	@Override
 	public long count() {
-		return super.countQuery("Soda.countAll");
+		return super.countWithNamedQuery("Soda.countAll");
+	}
+
+	public List<Soda> search(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

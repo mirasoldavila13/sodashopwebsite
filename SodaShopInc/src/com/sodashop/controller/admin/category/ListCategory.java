@@ -14,7 +14,7 @@ import com.sodashop.service.CategoryServ;
 
 
 @WebServlet("/admin/list_category")
-public class ListCategory extends Base {
+public class ListCategory extends  HttpServlet{
 	private static final long serialVersionUID = 1L;
     
     public ListCategory() {
@@ -24,8 +24,7 @@ public class ListCategory extends Base {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			response.getWriter().println("Edit Category");
-			CategoryServ categoryServ = new CategoryServ(entityManager,request, response);
+			CategoryServ categoryServ = new CategoryServ(request, response);
 			categoryServ.listCategory();
 		
 	}

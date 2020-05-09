@@ -23,7 +23,7 @@
 						</tr>
 						<tr>
 							<td align="right">Full Name:</td>
-							<td align="left"><input type="text" id="fullName" name="fullNames" size="45"/>
+							<td align="left"><input type="text" id="fullName" name="fullName" size="45"/>
 							</td>
 						</tr>
 					

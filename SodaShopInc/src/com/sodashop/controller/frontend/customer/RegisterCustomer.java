@@ -11,11 +11,11 @@ import com.sodashop.controller.Base;
 import com.sodashop.service.CustomerServ;
 
 @WebServlet("/register_customer")
-public class RegisterCustomer extends Base {
+public class RegisterCustomer extends  HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CustomerServ customerServ = new CustomerServ (entityManager,request, response);
+		CustomerServ customerServ = new CustomerServ (request, response);
 		customerServ.registerCustomer();
 
 	

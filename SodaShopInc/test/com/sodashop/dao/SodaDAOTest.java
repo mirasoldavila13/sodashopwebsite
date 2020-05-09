@@ -22,12 +22,11 @@ import com.sodashop.entity.Category;
 import com.sodashop.entity.Soda;
 import com.sodashop.entity.Users;
 
-public class SodaDAOTest extends DaoTest{
+public class SodaDAOTest {
 	private static SodaDAO sodaDAO;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		DaoTest.setUpBeforeClass();
-		sodaDAO = new SodaDAO(entityManager);
+		sodaDAO = new SodaDAO();
 
 	}
 
@@ -157,7 +156,7 @@ public class SodaDAOTest extends DaoTest{
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		DaoTest.tearDownAfterClass();
+		sodaDAO.close();
 	}
 
 }

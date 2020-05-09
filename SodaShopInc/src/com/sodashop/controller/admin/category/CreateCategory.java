@@ -12,7 +12,7 @@ import com.sodashop.service.CategoryServ;
 
 
 @WebServlet("/admin/create_category")
-public class CreateCategory extends Base {
+public class CreateCategory extends  HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	public CreateCategory() {
@@ -22,7 +22,7 @@ public class CreateCategory extends Base {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CategoryServ categoryServ = new CategoryServ(entityManager,request, response);
+		CategoryServ categoryServ = new CategoryServ(request, response);
 		categoryServ.createCategory();
 	}
 

@@ -12,7 +12,7 @@ import com.sodashop.service.CategoryServ;
 
 
 @WebServlet("/admin/delete_category")
-public class DeleteCategory extends Base {
+public class DeleteCategory extends  HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
@@ -24,7 +24,8 @@ public class DeleteCategory extends Base {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		CategoryServ categoryServ = new CategoryServ(entityManager,request, response);
-		categoryServ.deleteCategory();	}
+		CategoryServ categoryServ = new CategoryServ(request, response);
+		categoryServ.deleteCategory();	
+	}
 
 }

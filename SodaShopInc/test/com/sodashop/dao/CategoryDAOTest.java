@@ -11,18 +11,17 @@ import org.junit.Test;
 import com.sodashop.entity.Category;
 import com.sodashop.entity.Users;
 
-public class CategoryDAOTest extends DaoTest {
+public class CategoryDAOTest {
 	private static CategoryDAO categoryDao;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		DaoTest.setUpBeforeClass();
-		categoryDao = new CategoryDAO(entityManager);
+		categoryDao = new CategoryDAO();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		DaoTest.tearDownAfterClass();
+		categoryDao.close();
 	}
 
 	@Test

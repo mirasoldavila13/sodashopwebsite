@@ -13,7 +13,7 @@ import com.sodashop.service.UserServ;
 
 
 @WebServlet("/admin/delete_user")
-public class DeleteUser extends Base  {
+public class DeleteUser extends  HttpServlet  {
 	private static final long serialVersionUID = 1L;
        
    
@@ -24,7 +24,7 @@ public class DeleteUser extends Base  {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserServ userServ = new UserServ(entityManager,request, response);
+		UserServ userServ = new UserServ(request, response);
 		userServ.deleteUser();
 	}
 

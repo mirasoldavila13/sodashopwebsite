@@ -20,17 +20,15 @@ public class CustomerServ {
 	private CustomerDAO customerDAO;
 	private ReviewDAO reviewDAO;
 	private OrderDAO orderDAO;
-	private EntityManager entityManager;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
 	
-	public CustomerServ(EntityManager entityManager,HttpServletRequest request, HttpServletResponse response) {
+	public CustomerServ(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
 		// this is the instance of UserDAO class
-		customerDAO = new CustomerDAO(entityManager);
+		customerDAO = new CustomerDAO();
 	}
 	public void listCustomers(String message) throws ServletException, IOException {
 		List<Customer> listCustomer = customerDAO.listAll();		

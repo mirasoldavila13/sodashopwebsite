@@ -1,6 +1,6 @@
 package com.sodashop.service;
 
-import java.util.List; 
+import java.util.List;  
 import java.io.IOException;
 
 import javax.persistence.EntityManager;
@@ -18,18 +18,16 @@ import com.sodashop.entity.Category;
 import com.sodashop.entity.Users;
 
 public class CategoryServ{
-	private EntityManager entityManager;
 	private CategoryDAO categoryDao;
 	private HttpServletRequest request;
 	private  HttpServletResponse response;
 	
 	
-	public CategoryServ(EntityManager entityManager,HttpServletRequest request, HttpServletResponse response) {
+	public CategoryServ(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
 		// this is the instance of UserDAO class
-		categoryDao = new CategoryDAO(entityManager);
+		categoryDao = new CategoryDAO();
 	}
 	
 	public void listCategory() throws ServletException, IOException {

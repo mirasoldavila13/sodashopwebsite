@@ -9,9 +9,7 @@ import com.sodashop.entity.SodaOrder;
 
 public class OrderDAO extends JpaDAO<SodaOrder> implements GenericDAO<SodaOrder> {
 
-	public OrderDAO(EntityManager entityManager) {
-		super(entityManager);
-		// TODO Auto-generated constructor stub
+	public OrderDAO() {
 	}
 
 	@Override

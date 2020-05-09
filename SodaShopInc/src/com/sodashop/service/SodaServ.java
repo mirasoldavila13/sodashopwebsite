@@ -24,7 +24,6 @@ import com.sodashop.entity.Soda;
 import com.sodashop.entity.Users;
 
 public class SodaServ {
-	private EntityManager entityManager;
 	private SodaDAO sodaDAO;
 	private CategoryDAO categoryDAO;
 	private HttpServletRequest request;
@@ -33,13 +32,12 @@ public class SodaServ {
 	
 	
 
-	public SodaServ(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
+	public SodaServ(HttpServletRequest request, HttpServletResponse response) {
 		super();
-		this.entityManager = entityManager;
 		this.request = request;
 		this.response = response;
-		sodaDAO = new SodaDAO(entityManager);
-		categoryDAO = new CategoryDAO(entityManager);
+		sodaDAO = new SodaDAO();
+		categoryDAO = new CategoryDAO();
 	}
 
 
@@ -256,11 +254,26 @@ public class SodaServ {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
 
+	}
+	
+	public void search() throws ServletException, IOException {
+		String keyword = request.getParameter("keyword");
+		List<Soda> result = null; 
+				
+		if (keyword.equals("")) {
+			result = sodaDAO.listAll();
+		} else {
+			result = sodaDAO.search(keyword);
+		}
+		
+		request.setAttribute("keyword", keyword);
+		request.setAttribute("result", result);
+		
+		
+		String resultsPage = "frontend/search_result.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(resultsPage);
 		
 	}
-
-
-
 
 	
 

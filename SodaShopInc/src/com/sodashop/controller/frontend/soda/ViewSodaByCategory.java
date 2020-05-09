@@ -20,7 +20,7 @@ public class ViewSodaByCategory extends Base {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SodaServ sodaServ = new SodaServ(entityManager,request,response);
+		SodaServ sodaServ = new SodaServ(request,response);
 		sodaServ.listSodaByCategory();
 	
 	}

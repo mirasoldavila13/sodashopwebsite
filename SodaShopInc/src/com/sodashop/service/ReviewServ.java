@@ -17,18 +17,16 @@ import com.sodashop.entity.Review;
 import com.sodashop.entity.Soda;
 
 public class ReviewServ {
-	protected EntityManager entityManager;
 	private ReviewDAO reviewDAO;
 	private SodaDAO sodaDao;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
-	public ReviewServ(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
+	public ReviewServ(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
-		reviewDAO = new ReviewDAO(entityManager);
-		sodaDao = new SodaDAO(entityManager);
+		reviewDAO = new ReviewDAO();
+		sodaDao = new SodaDAO();
 		
 	}
 	

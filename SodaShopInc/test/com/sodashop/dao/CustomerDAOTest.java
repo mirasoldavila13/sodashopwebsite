@@ -10,14 +10,13 @@ import org.junit.Test;
 
 import com.sodashop.entity.Customer;
 
-public class CustomerDAOTest extends DaoTest {
+public class CustomerDAOTest {
 
 private static CustomerDAO customerDao; 
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		DaoTest.setUpBeforeClass();
-		customerDao = new CustomerDAO(entityManager);
+		customerDao = new CustomerDAO();
 	}
 
 	
@@ -119,6 +118,6 @@ private static CustomerDAO customerDao;
 	}	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		DaoTest.tearDownAfterClass();
+		customerDao.close();
 	}
 }

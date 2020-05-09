@@ -19,14 +19,13 @@ import org.junit.Test;
 
 import com.sodashop.entity.Users;
 
-public class UserDAOTest  extends DaoTest {
+public class UserDAOTest {
 	
 	private static UserDAO userDAO;
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		DaoTest.setUpBeforeClass();
-		userDAO = new UserDAO(entityManager);
+		userDAO = new UserDAO();
 
 	}
 	
@@ -136,7 +135,7 @@ public class UserDAOTest  extends DaoTest {
 		/*this test is test to see if I have 10 users in the db  with the total users
 		 * when you do this test please refer to how many rows/users you have
 		 * */
-		assertEquals(10,totalUsers);
+		assertEquals(1,totalUsers);
 	}
 	
 	
@@ -147,7 +146,7 @@ public class UserDAOTest  extends DaoTest {
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		DaoTest.tearDownAfterClass();
+		userDAO.close();
 	}
 
 }

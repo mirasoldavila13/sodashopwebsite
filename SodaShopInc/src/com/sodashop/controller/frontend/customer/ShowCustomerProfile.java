@@ -12,12 +12,12 @@ import com.sodashop.service.CustomerServ;
 
 
 @WebServlet("/view_profile")
-public class ShowCustomerProfile extends Base {
+public class ShowCustomerProfile extends  HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CustomerServ customerServ = new CustomerServ(entityManager,request, response);
+		CustomerServ customerServ = new CustomerServ(request, response);
 		customerServ.showCustomerProfile();
 	}
 
