@@ -1,5 +1,6 @@
 package com.sodashop.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -63,10 +64,14 @@ public class SodaDAO extends JpaDAO<Soda> implements GenericDAO<Soda> {
 		return super.countWithNamedQuery("Soda.countAll");
 	}
 
-	public List<Soda> search(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+	public long countByCategory(int categoryId) {
+		return super.countWithNamedQuery("Book.countByCategory", "catId", categoryId);
 	}
+
+	public List<Soda> listBestSellingSodas() {
+		return super.findWithNamedQuery("OrderDetail.bestSelling", 0, 4);
+	}	
+	
 
 	
 	
