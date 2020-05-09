@@ -4,7 +4,7 @@
 	<html>
 		<head>
 			<meta charset="UTF-8">
-			<title>Manage Categories</title>
+			<title>Manage Customers</title>
 			<link rel="stylesheet" href="../css/style.css">
 			<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
 			<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
@@ -12,8 +12,8 @@
 		<body>
 			<jsp:directive.include file="header.jsp"/>
 			<div align="center">
-				<h2 class="pageheading">Category Management</h2>
-				<a href="category_form.jsp">Create New Category</a>
+				<h2 class="pageheading">Customer Management</h2>
+				<a href="customer_form.jsp">Create New Customer</a>
 			</div>
 			<c:if test="${message != null}">
 			<div align="center">
@@ -22,42 +22,42 @@
 			</c:if>
 			
 			<div align="center">
-				<table border="1">
-					<tr>
-						<th>Index</th>
-						<th>ID</th>
-						<th>Image</th>
-						<th>Name</th>
-						<th>Manufacture</th>
-						<th>Category</th>
-						<th>Category</th>
-						<th>Price</th>
-						<th>Last Updated</th>
-						<th>Actions</th>
-					</tr>
-					<br />
-					<c:forEach var="category" items="${listCategories}" varStatus="status">
-					<tr>
-						<td>${status.index + 1}</td>
-						<td>${category.categoryId}</td>
-						<td>${category.name}</td>
-						
-						<td> 
-							<a href="edit_category?id=${category.categoryId}">Edit</a> &nbsp;
-							<a href="javascript:confirmDelete(${category.categoryId})">Delete</a>
-						 </td>
-					</tr>
-					</c:forEach>
-			</table>
-			</div>
+		<table border="1" cellpadding="5">
+			<tr>
+				<th>Index</th>
+				<th>ID</th>
+				<th>E-mail</th>
+				<th>Full Name</th>
+				<th>City</th>
+				<th>Country</th>
+				<th>Registered Date</th>
+				<th>Actions</th>
+			</tr>
+			<c:forEach var="customer" items="${listCustomer}" varStatus="status">
+			<tr>
+				<td>${status.index + 1}</td>
+				<td>${customer.customerId}</td>
+				<td>${customer.email}</td>
+				<td>${customer.fullname}</td>
+				<td>${customer.city}</td>
+				<td>${customer.country}</td>
+				<td>${customer.registerDate}</td>
+				<td>
+					<a href="edit_customer?id=${customer.customerId}">Edit</a> &nbsp;
+					<a href="javascript:confirmDelete(${customer.customerId})" id="${customer.customerId}">Delete</a>
+				</td>
+			</tr>
+			</c:forEach>
+		</table>
+	</div>
 			<jsp:directive.include file="footer.jsp"/>
 			
 			<script>
-				function confirmDelete(categoryId){
+				function confirmDelete(customerId){
 
-				if(confirm('Are you sure you want to delete category ' + categoryId + '?')){
+				if(confirm('Are you sure you want to delete customer ' + customerId + '?')){
 					//if user presses ok, set the location property of the current window to the url of the servlet
-					window.location = 'delete_category?id=' + categoryId;
+					window.location = 'delete_customer?id=' + customerId;
 					}
 				}
 

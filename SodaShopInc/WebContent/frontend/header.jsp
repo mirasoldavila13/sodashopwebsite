@@ -5,7 +5,6 @@
 			<img src="images/SodaShopLogo.png"/>
 	</div>
 	<div>
-		<form action="search" method="get">
 			<input type="text" name="keyword" size="50" />
 			<input type="submit" value="Search" />		
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -22,7 +21,7 @@
 			</c:if>
 			
 			<a href="view_cart">Cart</a>
-		</form>
+		
 	</div>
 	<div>&nbsp;</div>
 	<div>

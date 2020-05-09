@@ -35,10 +35,18 @@
 			
 		</c:forEach>
 	</div>
+			<div class="next-row">
 			<h2>Best-Selling Sodas:</h2>
-			<h2>Most-Favored Sodas:</h2>
-			</div>
-			
+			<c:forEach items="${listBestSellingSodas}" var="soda">
+				<jsp:directive.include file="soda_group.jsp" />
+			</c:forEach>			
+		</div>
+		<div class="next-row">
+			<h2>Most-favored Soda:</h2>
+			<c:forEach items="${listFavoredSoda}" var="soda">
+				<jsp:directive.include file="soda_group.jsp" />
+			</c:forEach>			
+		</div>
 			<jsp:directive.include file="footer.jsp"/>
 			
 		</body>

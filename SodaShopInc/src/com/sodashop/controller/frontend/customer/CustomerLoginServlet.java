@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sodashop.service.CustomerServ;
+
 @WebServlet("/login")
 public class CustomerLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,18 +23,16 @@ public class CustomerLoginServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String loginPage = "frontend/login.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(loginPage);
-		dispatcher.forward(request, response);
+		CustomerServ customerServ = new CustomerServ(request, response);
+		customerServ.showLogin();
 		
 		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		CustomerServ customerServ = new CustomerServ(request, response);
+		customerServ.doLogin();
 	}
 
 }
