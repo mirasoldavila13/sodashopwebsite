@@ -256,24 +256,7 @@ public class SodaServ {
 
 	}
 	
-	public void search() throws ServletException, IOException {
-		String keyword = request.getParameter("keyword");
-		List<Soda> result = null; 
-				
-		if (keyword.equals("")) {
-			result = sodaDAO.listAll();
-		} else {
-			result = sodaDAO.search(keyword);
-		}
-		
-		request.setAttribute("keyword", keyword);
-		request.setAttribute("result", result);
-		
-		
-		String resultsPage = "frontend/search_result.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(resultsPage);
-		
-	}
+
 
 	
 

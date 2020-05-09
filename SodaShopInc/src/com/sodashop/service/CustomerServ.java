@@ -45,14 +45,21 @@ public class CustomerServ {
 	public void createCustomer() throws ServletException, IOException {
 		String email = request.getParameter("email");
 		Customer existCustomer = customerDAO.findByEmail(email);
-			Customer newCustomer = new Customer();
-			updateCustomerFieldsFromForm(newCustomer);
-			customerDAO.create(newCustomer);
-			
-			String message = "New customer has been created successfully.";
-			listCustomers(message);
-			
-		
+	
+
+			if (existCustomer != null) {
+				String message = "Could not create new customer: the email "
+						+ email + " is already registered by another customer.";
+				listCustomers(message);
+				
+			} else {
+				Customer newCustomer = new Customer();
+				updateCustomerFieldsFromForm(newCustomer);
+				customerDAO.create(newCustomer);
+				
+				String message = "New customer has been created successfully.";
+				listCustomers(message);
+			}
 	}
 
 	private void updateCustomerFieldsFromForm(Customer customer) {
@@ -90,20 +97,25 @@ public class CustomerServ {
 		if (existCustomer != null) {
 			message = "Could not register. The email "
 					+ email + " is already registered by another customer.";
+			message = "frontend/message.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(message);
+			request.setAttribute("message", message);
+			dispatcher.forward(request, response);
 		} else {
 			
 			Customer newCustomer = new Customer();
 			updateCustomerFieldsFromForm(newCustomer);			
 			customerDAO.create(newCustomer);
 			
-			message = "You have registered successfully! Thank you.<br/>"
-					+ "<a href='login'>Click here</a> to login";			
+			message = "You have registered successfully! Thank you.<br/>";	
+			String messagePage = "frontend/message.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(messagePage);
+			request.setAttribute("message", message);
+			dispatcher.forward(request, response);
 		}
 		
 		
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(message);
-		dispatcher.forward(request, response);
 	}	
 	
 	public void editCustomer() throws ServletException, IOException {
@@ -194,19 +206,17 @@ public class CustomerServ {
 		String password = request.getParameter("password");
 		
 		Customer customer = customerDAO.checkLogin(email, password);
-	
-			HttpSession session = request.getSession();
-			session.setAttribute("loggedCustomer", customer);
+		if(customer == null) {
+			String message = "Login failed";
+			request.setAttribute("message", message);
+			showLogin();
+		}
+		else {
+			request.getSession().setAttribute("loggedCustomer", customer);
+			showCustomerProfile();
+
+		}
 			
-			Object objRedirectURL = session.getAttribute("redirectURL");
-			
-			if (objRedirectURL != null) {
-				String redirectURL = (String) objRedirectURL;
-				session.removeAttribute("redirectURL");
-				response.sendRedirect(redirectURL);
-			} else {
-				showCustomerProfile();
-			}
 		
 	}
 	
